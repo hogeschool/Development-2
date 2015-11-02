@@ -1,3 +1,79 @@
+\usepackage{color}
+\newcommand{\red}[1]{
+\textcolor{red}{#1}
+}
+\newcommand{\ts}{\textbackslash}
+\usepackage{listings}
+\lstnewenvironment{codewithblock}[1]{
+	\lstset{language=ML,
+    mathescape=true,
+    frame=single,
+    numbers=left,
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    literate={ï}{{\"i}}1
+             {ì}{{\`i}}1}}{
+             \begin{itemize}
+             #1
+             \end{itemize}}
+\lstset{language=ML,
+  mathescape=true,
+  frame=single,
+  numbers=left,
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  literate={ï}{{\"i}}1
+           {ì}{{\`i}}1
+}
+
+\newenvironment{statetable}[3]{
+\begin{tabular}{ #1 }
+   \hline
+   #2 \\
+   \hline
+   #3 \\
+   \hline
+\end{tabular}
+}
+
+\newenvironment{memorytable}[6]{
+\begin{tabular}{ c l }
+  S & 
+\begin{statetable}
+{#1}
+{#2}
+{#3}
+\end{statetable}  \\
+\\
+M &
+\begin{statetable}
+{#4}
+{#5}
+{#6}
+\end{statetable} \\
+\end{tabular}
+}
+
+\lstnewenvironment{codewithmemory}[6]{
+	\lstset{language=ML,
+    mathescape=true,
+    frame=single,
+    numbers=left,
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    literate={ï}{{\"i}}1
+             {ì}{{\`i}}1}}{
+             \begin{memorytable}{#1}{#2}{#3}{#4}{#5}{#6}\end{memorytable}}
+
+\newenvironment{thankyou}
+{
+\begin{frame}{This is it!}
+\center
+\fontsize{18pt}{7.2}\selectfont
+The best of luck, and thanks for the attention!
+\end{frame}
+}
+
 \newenvironment{slide}[1]
 {
 \begin{frame}{\CurrentSection}
@@ -15,18 +91,6 @@
 \begin{frame}{\CurrentSection}
 \begin{block}{\CurrentSubSection}
 #1
-\end{block}
-}{
-\end{frame}
-}
-
-\newenvironment{codeslide}[1]
-{
-\begin{frame}[fragile]{\CurrentSection}
-\begin{block}{\CurrentSubSection}
-\begin{lstlisting}[language=CAML]
-#1
-\end{lstlisting}
 \end{block}
 }{
 \end{frame}
