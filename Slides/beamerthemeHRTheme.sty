@@ -9,18 +9,20 @@
     mathescape=true,
     frame=single,
     numbers=left,
-    basicstyle=\ttfamily\footnotesize,
+    basicstyle=\ttfamily\tiny,
     breaklines=true,
     literate={ï}{{\"i}}1
              {ì}{{\`i}}1}}{
-             \begin{itemize}
-             #1
-             \end{itemize}}
+		\begin{block}{\CurrentSubSection}
+			\begin{itemize}
+			#1
+			\end{itemize}
+		\end{block}}
 \lstset{language=ML,
   mathescape=true,
   frame=single,
   numbers=left,
-  basicstyle=\ttfamily\footnotesize,
+  basicstyle=\ttfamily\tiny,
   breaklines=true,
   literate={ï}{{\"i}}1
            {ì}{{\`i}}1
@@ -37,6 +39,7 @@
 }
 
 \newenvironment{memorytable}[6]{
+{\tiny
 \begin{tabular}{ c l }
   S & 
 \begin{statetable}
@@ -45,13 +48,14 @@
 {#3}
 \end{statetable}  \\
 \\
-M &
+H &
 \begin{statetable}
 {#4}
 {#5}
 {#6}
 \end{statetable} \\
 \end{tabular}
+}
 }
 
 \lstnewenvironment{codewithmemory}[6]{

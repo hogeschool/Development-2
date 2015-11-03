@@ -1,4 +1,30 @@
 ﻿########################
+# lecture two - solution
+########################
+
+class Empty:
+  def __init__(self):
+      self.IsEmpty = True
+Empty = Empty()
+
+class Node:
+  def __init__(self, value, tail):
+      self.IsEmpty = False
+      self.Value   = value
+      self.Tail    = tail
+
+l = Empty
+for i in range(0, int(input("How many elements in the list?"))):
+  l = Node(int(input("Insert the next element")), l)
+
+x = l
+while not(x.IsEmpty):
+  print(x.Value)
+  x = x.Tail
+
+quit()
+
+########################
 # lecture one - problem
 ########################
 playerOneName = "P1"
@@ -14,7 +40,7 @@ playerThreePositionX = 10.0
 playerThreePositionY = 0.0
 
 ########################
-# lecture two - solution
+# lecture one - solution
 ########################
 class Player:
   def __init__(self, name, posX, posY):
@@ -31,7 +57,7 @@ print(playerTwo.Name + " is at " + str(playerTwo.PositionX) + "," + str(playerTw
 print(playerThree.Name + " is at " + str(playerThree.PositionX) + "," + str(playerThree.PositionY))
 
 ########################
-# lecture three - refined
+# lecture one - refined
 ########################
 class Vector2:
   def __init__(self, x, y):
