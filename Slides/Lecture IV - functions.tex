@@ -4,22 +4,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage[space]{grffile}
-\usepackage{listings}
-\lstset{language=C,
-basicstyle=\ttfamily\footnotesize,
-mathescape=true,
-breaklines=true}
-\lstset{
-  literate={ï}{{\"i}}1
-           {ì}{{\`i}}1
-}
-\usepackage{color}
-\newcommand{\red}[1]{
-\textcolor{red}{#1}
-}
-\newcommand{\ts}{\textbackslash}
 
-\title{Classes}
+\title{Functions}
 
 \author{TEAM INFDEV}
 
@@ -34,60 +20,428 @@ Rotterdam, Netherlands}
 \SlideSection{Introduction}
 \SlideSubSection{Lecture topics}
 \begin{slide}{
-\item A description of the topics of the lecture
+\item So far we have shown how data representation can be abstracted away
+\item Building useful containers only once makes it possible to reuse their definition
+\item Many data structures (tuples, lists, maps, sets, etc.) become thus a new layer of abstraction
+}\end{slide}
+
+\begin{slide}{
+\item Manipulating these data structures happens in user code
+\item Often, user code needs to perform operations that are similar to each other
+\item Similar operations should not require rewriting everything every time
 }\end{slide}
 
 \SlideSection{Problem discussion}
 \SlideSubSection{Introduction}
 \begin{slide}{
-\item What specific problem are we tackling in this lecture?
+\item Consider many operation on lists
+\begin{itemize}
+\item finding or removing a specific element in a container
+\item computing the length of a list
+\item removing all elements that satisfy a condition
+\item ...
+\end{itemize}
 }\end{slide}
 
-\SlideSubSection{Examples}
+\begin{frame}[fragile]{Lenght of a list}
+\begin{codewithblock}{\pause \item What does \texttt{l} contain? \item What do we do with the values of the list? \item Do they even matter?}
+cnt = 0
+x = l
+while not(x.IsEmpty):
+  cnt = cnt + 1
+  x = x.Tail
+print("List l contains " + str(cnt) + " elements.")
+\end{codewithblock}
+\end{frame}
+
 \begin{slide}{
-\item Example instances of the problem, with code and discussion
+\item Suppose that we now have another list, \texttt{k}
+\item We wish to know its length
+\item How do we do it?
 }\end{slide}
+
+\begin{frame}[fragile]{Lenght of a list}
+\begin{codewithblock}{\pause \item Looks suspiciously like the previous code block \item Why?}
+cnt = 0
+x = k
+while not(x.IsEmpty):
+  cnt = cnt + 1
+  x = x.Tail
+print("List k contains " + str(cnt) + " elements.")
+\end{codewithblock}
+\end{frame}
 
 \SlideSection{General idea}
-\SlideSubSection{Introduction}
+\SlideSubSection{Adding our own layers}
 \begin{slide}{
-\item How are we going to solve the problem?
+\item The goal of this lecture is to add a new layer of abstraction to our programs
+\item We wish to reuse \textbf{implementations}, not only data structures
+\item This layer of abstraction is called \textbf{functions}
 }\end{slide}
+
+\begin{frame}[fragile]{Adding our own layers}
+\begin{lstlisting}
++-------------+
+| ...         |
++------------------+
+| Functions        |
++-----------------------+
+| data structures       |
++----------------------------+
+| if, for, while, variables  |
++--------------------------------+
+| (Python) runtime               |
++--------------------------------+
+...
+\end{lstlisting}
+\end{frame}
 
 \SlideSubSection{Description}
 \begin{slide}{
-\item What are the aspects of the solution?
+\item A function is a collection of instructions and variables
+\item Some instructions and variables are fixed inside its \textbf{body}
+\item Other instructions and variables come from outside the function, and thus are not fixed; these are called \textbf{parameters} of the function
+\item We try to strike the right balance between flexibility and work done
+\item The function returns a final result that can be recovered by the code that uses the function
+}\end{slide}
+
+\begin{frame}[fragile]{Blueprint of a function (NOT ACTUAL PYTHON CODE!)}
+\begin{codewithblock}{\pause \item \texttt{length} is the \textbf{function name} \item \texttt{l} is the only \textbf{parameter} \item Lines 2 through 6 are \textbf{fixed} \item \texttt{cnt} is the \textbf{final result}}
+length of a list l:
+  cnt = 0
+  x = l
+  while not(x.IsEmpty):
+    cnt = cnt + 1
+    x = x.Tail
+  return cnt as the final result 
+\end{codewithblock}
+\end{frame}
+
+\SlideSubSection{Using the function}
+\begin{slide}{
+\item Code that needs the length of a function can now simply invoke function \texttt{length}
+\item The resulting code will simply be \texttt{l\_len = length(l)}
+\item \texttt{l\_len} will be assigned with the value returned by the function
 }\end{slide}
 
 \SlideSection{Technical details}
 \SlideSubSection{Introduction}
 \begin{slide}{
-\item How is this done in Python?
+\item A function can be defined in Python quite easily
+\item The syntax is:
+\begin{itemize}
+\item \texttt{def <<name>>(<<parameters>>):}\footnote{Parameters might be none, thus we can write simply \texttt{()}}\footnote{Multiple parameters are separated by a comma, thus \texttt{(<<p1>>,<<p2>>,...,<<pn>>)}}
+\begin{itemize}
+\item \texttt{body}
+\item \texttt{return <<result>>}
+\end{itemize}
+\end{itemize}
+\item Inside a function we can put whatever instructions we need
+\begin{itemize}
+\item \texttt{if}
+\item \texttt{for}
+\item ...
+\end{itemize}
+}\end{slide}
+
+\begin{frame}[fragile]{Actual Python list-length function declaration and definition}
+\begin{lstlisting}
+def length(l):
+  cnt = 0
+  x = l
+  while not(x.IsEmpty):
+    cnt = cnt + 1
+    x = x.Tail
+  return cnt  
+\end{lstlisting}
+\end{frame}
+
+\SlideSubSection{Using the function}
+\begin{slide}{
+\item After we declare a function, we can use it
+\item The syntax is quite simple
+\begin{itemize}
+\item \texttt{<<name>>(<<parameters>>)} to just call the function and ignore the result
+\item \texttt{<<v>> = <<name>>(<<parameters>>)} to call the function and assign the result to the \texttt{<<v>>} variable
+\end{itemize}
 }\end{slide}
 
 \SlideSubSection{Syntax and semantics}
 \begin{slide}{
-\item How is this done in Python?
+\item We will now describe how Python functions work precisely
+\item This is a \textbf{fundamental} bit of knowledge that determines if you really do learn how to program or not
+\item This \textbf{absolutely requires} a lot of focus to get
+\item Please panic a bit on the inside
 }\end{slide}
 
-\SlideSubSection{Examples}
+\SlideSubSection{Subtleties that make functions ``fun'' to use}
 \begin{slide}{
-\item Example instances of the solution
-\item Code samples
-\item Steps in the memory model and accompanying discussion in class
+\item About variables
+\begin{itemize}
+\item Variables and parameters inside a function have precise \textbf{scope} (visibility)
+\item Primitive values given as parameters can be \textbf{changed only locally} to the function
+\item References given as parameters can be \textbf{permanently changed} from within the function
+\item Global variables defined outside the function may be \textbf{read but not changed} from within the function\footnote{\textbf{Unless you use some tricks we strongly discourage}}
+\end{itemize}
+\item About behaviour
+\begin{itemize}
+\item A function may \textbf{call itself}, in a process known as \textbf{recursion}
+\item A function may \textbf{get as parameters and return other functions}, in a process known as \textbf{higher order functions}
+\end{itemize}
+}\end{slide}
+
+\SlideSubSection{Local and global variables (basics of scope)}
+\begin{slide}{
+\item The parameters of a function are added to the list of accessible variables
+\item They are only visible from inside the function
+\item Global variables are also visible from inside the function
+}\end{slide}
+
+\begin{slide}{
+\item Every call to a function generates a new value of the stack memory \texttt{S}
+\item This contains (private copy of) all local variables
+\item The heap memory \texttt{H} remains the same
+\item The original stack memory (the \textbf{global variables}) remains accessible, just read-only 
+}\end{slide}
+
+\begin{slide}{
+\item Every call to a function also reserves a special location in the stack
+\item In this location will be put the returned value
+}\end{slide}
+
+\begin{frame}[fragile]{Locals and globals}
+\begin{codewithblock}{\item \texttt{x} is a global variable, visible outside and inside the function \item \texttt{z} is a local variable, visible only inside the function \pause \item \textbf{What does this program print?} \pause \item \texttt{10}, \texttt{30}, \texttt{20}}
+x = 1
+
+def f(z):
+  return x * z
+
+print(f(10))
+print(f(30))
+x = 2
+print(f(10))
+\end{codewithblock}
+\end{frame}
+
+\begin{frame}[fragile]{Locals and globals}
+\begin{codewithblock}{\item \texttt{x} is a global variable, visible outside and inside the function \item \texttt{z} is a local variable, visible only inside the function \pause \item \textbf{What does this program do?} \pause \item Crash with \texttt{NameError: name 'z' is not defined}}
+x = 1
+
+def f(z):
+  return x * z
+
+print(f(10))
+x = 2
+print(f(10))
+print(z)
+\end{codewithblock}
+\end{frame}
+
+\begin{frame}[fragile]{Locals and globals}
+\begin{codewithblock}{\item \texttt{z} is a local variable, visible only inside the function \pause \item \textbf{What does this program print?} \pause \item \texttt{22}, \texttt{62}}
+def f(z):
+  z = z + 1
+  return z * 2
+
+print(f(10))
+print(f(30))
+\end{codewithblock}
+\end{frame}
+
+\SlideSubSection{Shadowing}
+\begin{slide}{
+\item The parameters of a function have priority over globals
+\item They supersede global variables of the same name
+}\end{slide}
+
+\begin{frame}[fragile]{Shadowing}
+\begin{codewithblock}{\item \texttt{x} is a global variable, potentially visible inside the function \item \texttt{x} is also a local variable of the function, which has priority over the global \texttt{x} \pause \item \textbf{What does this program print?} \pause \item \texttt{20}, \texttt{40}}
+x = 10
+
+def f(x):
+  return x * 2
+
+print(f(10))
+print(f(20))
+\end{codewithblock}
+\end{frame}
+
+\SlideSubSection{Recursion}
+\begin{slide}{
+\item (Recursive) functions are all functions that call themselves in their bodies
+\item This leads to a compacter and often more easily correct representation
+\item This is based on the principle of induction and in general a very powerful technique
+\item Code is not easier to read, especially to the untrained
+}\end{slide}
+
+\begin{slide}{
+\item Remember that calling a function creates a new instance of stack memory
+\item Recursive functions do this a lot
+\item Each recursive call has its own environment
+}\end{slide}
+
+\begin{frame}[fragile]{Recursion}
+\begin{codewithblock}{\item How many \texttt{l}'s shall we have? \pause \item As many as the nodes of the initial value}
+def length(l):
+  if l.IsEmpty:
+    return 0
+  else:
+    return length(l.Tail) + 1
+\end{codewithblock}
+\end{frame}
+
+\SlideSubSection{Higher order functions}
+\begin{slide}{
+\item Functions may also take and return other functions as parameters
+\begin{itemize}
+\item These are then called \textbf{higher order functions} (HOF's)\footnote{\pause \textbf{Higher order} because parameters are not concrete values but rather computations, which are higher wrt the floors of the Ivory Tower}
+\end{itemize}
+\item This lets us specify a function where some instructions are not fixed
+\item By passing other functions as parameters we literally create ``customizable algorithms''
+}\end{slide}
+
+\begin{slide}{
+\item As an example, consider the case of combining two values together
+\item We do not care how, as long as they are combined according to some criterion
+\item The criterion is given as an input function
+}\end{slide}
+
+\begin{frame}[fragile]{Recursion}
+\begin{codewithblock}{\item What do we know about \texttt{x} and \texttt{y}? \item Do we even care?}
+def combine(op,x,y):
+  return op(x,y)
+\end{codewithblock}
+\end{frame}
+
+\begin{slide}{
+\item A function such as \texttt{combine} can be used by providing another function as the first parameter
+\item As long as the function will work correctly on the second and third parameters
+}\end{slide}
+
+\begin{frame}[fragile]{HOF's}
+\begin{codewithblock}{\item \textbf{What does this code do?} \pause \item Prints \texttt{30}, \texttt{200}, \texttt{-10}}
+def combine(op,x,y):
+  return op(x,y)
+
+def plus(x,y): return x + y
+def times(x,y): return x * y
+def minus(x,y): return x - y
+  
+print(combine(plus, 10, 20))
+print(combine(times, 10, 20))
+print(combine(minus, 10, 20))
+\end{codewithblock}
+\end{frame}
+
+\begin{slide}{
+\item We can use \texttt{combine} on any data types we want
+\item For example, strings
+}\end{slide}
+
+\begin{frame}[fragile]{HOF's}
+\begin{codewithblock}{\item \textbf{What does this code do?} \pause \item Prints \texttt{1020}, \texttt{200}, \texttt{-10}}
+def combine(op,x,y):
+  return op(x,y)
+
+def plus(x,y): return x + y
+def times(x,y): return x * y
+def minus(x,y): return x - y
+  
+print(combine(plus, "10", "20"))
+print(combine(times, 10, 20))
+print(combine(minus, 10, 20))
+\end{codewithblock}
+\end{frame}
+
+\begin{slide}{
+\item Defining functions such as \texttt{plus}, \texttt{times}, and \texttt{minus} is cumbersome
+\item After all, we already have symbols for them: \texttt{(+)}, \texttt{(*)}, and \texttt{(-)}
+\item Repetition and duplication of code is never good
+}\end{slide}
+
+\begin{slide}{
+\item Python (version at least 3) offers facilities for the inline definition of short functions
+\item The syntax fits one line and requires no newlines
+\item \texttt{lambda <<paramters>>: <<result>>}
+\begin{itemize}
+\item \texttt{<<parameters>>} is a list of comma-separated parameters
+\item \texttt{<<result>>} is the expression that is returned
+\end{itemize}
+\item For example: \texttt{lambda x,y: x+y}
+}\end{slide}
+
+\begin{frame}[fragile]{HOF's}
+\begin{codewithblock}{\item \textbf{What does this code do?} \pause \item Prints \texttt{1020}, \texttt{200}, \texttt{-10} \item Does not require the extra function definitions}
+def combine(op,x,y):
+  return op(x,y)
+
+print(combine((lambda x,y: x+y), "10", "20"))
+print(combine((lambda x,y: x*y), 10, 20))
+print(combine((lambda x,y: x-y), 10, 20))
+\end{codewithblock}
+\end{frame}
+
+\begin{slide}{
+\item We can also return a function from a function
+\item For example, to dynamically choose an operation
+\item This makes code very expressive and flexible, but also potentially much harder to read
+\item Use with caution!
+}\end{slide}
+
+\begin{frame}[fragile]{HOF's}
+\begin{codewithblock}{\item \textbf{What does this code do?} \pause \item Chooses the function based on \texttt{input} that will \texttt{combine} \texttt{10} and \texttt{20}}
+def combine(op,x,y):
+  return op(x,y)
+
+def choose_operation():
+  i = input("Choose an operation between +, -, or *")
+  if i == "+":
+    return lambda x,y: x+y
+  elif i == "-":
+    return lambda x,y: x-y
+  else:
+    return lambda x,y: x*y
+print(combine(choose_operation(), 10, 20))
+\end{codewithblock}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MEMORY MODEL STEPS FOR EACH SAMPLE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\SlideSection{Assignments}
+\SlideSubSection{Build and test, on paper...}
+\begin{slide}{
+\item A hof \texttt{map} that transforms all elements of a list:
+\begin{itemize}
+\item \texttt{map(lambda x: x + 10, Node(1,Node(2,Node(3,Empty)))) -> Node(11,Node(12,Node(13,Empty)))}
+\end{itemize}
+\item A hof \texttt{filter} that removes elements from a list:
+\begin{itemize}
+\item \texttt{filter(lambda x: x \% 2 == 0, Node(1,Node(2,Node(3,Empty)))) -> Node(2,Empty)}
+\end{itemize}
+\item A hof \texttt{reduce} that a list into a single value:
+\begin{itemize}
+\item \texttt{reduce(lambda x,y: x + y, Node(1,Node(2,Node(3,Empty)))) -> 6}
+\end{itemize}
 }\end{slide}
 
 \SlideSection{Conclusion}
 \SlideSubSection{Lecture topics}
 \begin{slide}{
-\item What problem did we solve today, and how?
+\item Often, user code needs to perform operations that are similar to each other
+\item Through the mechanism of function definition, we can recycle code
+\item Functions can encode algorithms in many way
+\begin{itemize}
+\item Simple code abstractions to avoid repetition
+\item Recursive problems
+\item Algorithms with ``holes'' given as higher order parameters
+\item Algorithms that return other algorithms as higher order results
+\end{itemize}
 }\end{slide}
 
-\begin{frame}{This is it!}
-\center
-\fontsize{18pt}{7.2}\selectfont
-The best of luck, and thanks for the attention!
-\end{frame}
+\begin{thankyou}
+\end{thankyou}
 
 \end{document}
 
