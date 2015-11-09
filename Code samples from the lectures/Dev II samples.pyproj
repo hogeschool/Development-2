@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ad70926e-05f5-4c20-9572-95b43ecd4b03</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Dev_II_samples.py</StartupFile>
+    <StartupFile>Car.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Car.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Dev_II_samples.py" />
+    <Compile Include="List.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
