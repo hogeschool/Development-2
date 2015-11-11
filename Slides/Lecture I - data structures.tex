@@ -189,6 +189,8 @@ Does it scale well?
 \item Abstraction requires awareness and experience
 \item It is as much technique as it is art
 }\end{slide}
+% Not only about how you define datastructures, but at least as much a design art (creative and thinking come into play)
+
 
 \begin{frame}[fragile]{Repeated code}
 \begin{lstlisting}
@@ -227,7 +229,7 @@ playerThreePositionY = 0.0
 \begin{frame}[fragile]{The blueprint (\textbf{THIS IS NOT CODE!})}
 \begin{lstlisting}
 Abstraction Player =
-  Name, which is a string
+  Name, which is a sequence of characters
   PositionX, which is a number
   PositionY, which is a number
 \end{lstlisting}
@@ -338,6 +340,8 @@ $$<PC,H,S> \overset{xName}{\rightarrow} <PC+1,H[|H| \mapsto \llangle Name \rrang
 $$<PC,H,S> \overset{xA}{\rightarrow} <PC+1,H[S[x]][\llangle A \rrangle],S>$$
 }\end{slide}
 
+
+
 \SlideSubSection{Attribute update}
 \begin{slide}{
 \item Consider assigning to an attribute
@@ -348,7 +352,8 @@ $$<PC,H,S> \overset{xA}{\rightarrow} <PC+1,H[S[x]][\llangle A \rrangle],S>$$
 \item[\textbf{HEAP}] We reassign the actual attribute in the map of attributes
 \end{description}
 
-$$<PC,H,S> \overset{xAv}{\rightarrow} <PC+1,H[S[x] \mapsto S[x][A \mapsto v]]$$
+$$<PC,H,S> \overset{xAv}{\rightarrow} <PC+1,H[S[x] \mapsto H[S[x]][A \mapsto v]]$$
+% TODO add "how to read it"
 }\end{slide}
 
 \SlideSubSection{Examples}
