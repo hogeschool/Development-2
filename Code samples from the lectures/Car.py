@@ -1,4 +1,4 @@
-import math
+﻿import math
 
 class Vector2:
   def __init__(self, x, y):
@@ -32,7 +32,7 @@ class Car:
     self.Position = p
     self.Velocity = v
     self.Gas = g
-  def Update(self, dt):
+  def Travel(self, dt):
     if self.Gas > 0.0:
       return Car(self.Position + self.Velocity * dt, self.Velocity, self.Gas - 1.0 * dt)
     else:
@@ -42,7 +42,7 @@ class Car:
 
 c = Car(Vector2.Zero(), Vector2.UnitX(), 10.0)
 while(c.Gas > 0.0):
-  c = c.Update(0.5)
+  c = c.Travel(2.0)
   print(c)
 
 
@@ -53,14 +53,15 @@ class MutableCar:
     self.Position = p
     self.Velocity = v
     self.Gas = g
-  def Update(self, dt):
+  def Travel(self, dt):
     if self.Gas > 0.0:
       self.Position = self.Position + self.Velocity * dt
       self.Gas = self.Gas - 1.0 * dt
   def __str__(self):
     return "A car at " + str(self.Position) + " with a tank of " + str(self.Gas) + " liters"
 
+print("Starting the trip!")
 c = MutableCar(Vector2.Zero(), Vector2.UnitX(), 10.0)
 while(c.Gas > 0.0):
-  c.Update(0.5)
+  c.Travel(2.0)
   print(c)

@@ -1,5 +1,5 @@
-class Empty:
-  def IsEmpty(): return True
+﻿class Empty:
+  def IsEmpty(self): return True
   def __str__(self):
     return "[]"
   def __rlshift__(self, v):
@@ -17,7 +17,7 @@ class Empty:
 Empty = Empty()
 
 class Node:
-  def IsEmpty(): return False
+  def IsEmpty(self): return False
   def Head(self): return self.Head
   def Tail(self): return self.Tail
   def __init__(self, x, xs):
