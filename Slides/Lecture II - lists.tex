@@ -29,7 +29,7 @@ Rotterdam, Netherlands}
 \SlideSection{Problem discussion}
 \SlideSubSection{Introduction}
 \begin{slide}{
-\item So far we have been dealing with a single datum in everty variable
+\item So far we have been dealing with a single date in every variable
 \item For example, integer \texttt{0} in variable \texttt{i}
 \item Sometimes we need to store multiple things in the same variable
 }\end{slide}
@@ -57,7 +57,7 @@ truck10 = Truck(...)
 \SlideSubSection{Introduction}
 \begin{slide}{
 \item To solve this problem, we want to have all the data in a single variable
-\item The variable contains thus an unknown number of values
+\item The variable contains thus an \textbf{unknown} number of values
 \begin{itemize}
 \item Might be empty
 \item Might have only one element
@@ -95,8 +95,8 @@ truck10 = Truck(...)
 \end{itemize}
 \item \textbf{A list with three integers would be?} \pause \texttt{Node(1,Node(2,Node(3,Empty)))}
 \item \textbf{A list with two integers would be?} \pause \texttt{Node(1,Node(2,Empty))}
-\item \textbf{An empty list would be?} \pause \texttt{Empty}
-\item ...
+\item \textbf{An empty list would be?} \pause
+\texttt{Empty}
 }\end{slide}
 
 \begin{slide}{
@@ -131,7 +131,7 @@ Abstraction Empty =
 
 Abstraction Node = 
   IsEmpty, which is always false
-  Value, which contains the datum of this element of the list
+  Value, which contains the data of this element of the list
   Tail, which contains the remaining nodes of the list
 \end{codewithblock}
 \end{frame}
@@ -175,7 +175,7 @@ l = Empty
 count = int(input("How many elements?"))
 for i in range(0, count):
   v = int(input("Insert the next element")
-  l = Node(v), l)
+  l = Node(v, l)
 \end{lstlisting}
 
 \pause 
@@ -205,7 +205,7 @@ l = Empty
 count = int(input("How many elements?"))
 for i in range(0, count):
   v = int(input("Insert the next element")
-  l = Node(v), l)
+  l = Node(v, l)
 \end{lstlisting}
 
 \pause 
@@ -236,7 +236,7 @@ l = Empty
 count = int(input("How many elements?"))
 for i in range(0, count):
   v = int(input("Insert the next element")
-  l = Node(v), l)
+  l = Node(v, l)
 \end{lstlisting}
 
 \pause 

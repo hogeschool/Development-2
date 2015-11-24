@@ -328,14 +328,14 @@ $$<PC,H,S> \overset{xName}{\rightarrow} <PC+1,H[|H| \mapsto \llangle Name \rrang
 \SlideSubSection{Attribute lookup}
 \begin{slide}{
 \item Consider reading an attribute (also called lookup)
-\item \texttt{x.<<A>>} (shortened to \texttt{xA})
+\item \texttt{x.<<A>>} (shortened to \texttt{xA})\footnote{\pause This is not a full instruction, but an \textbf{expression}. For this reason, we use another kind of arrow, $\hookrightarrow$, to denote that we simply evaluate the expression but do not change the state of the program.}
 \item Where is it in memory?
 \begin{description}
 \item[\textbf{STACK}] We find an entry \texttt{x}, which tells us where the corresponding instance of the class is found 
 \item[\textbf{HEAP}] We find the actual attribute in the map of attributes
 \end{description}
 
-$$<PC,H,S> \overset{xA}{\rightarrow} <PC+1,H[S[x]][\llangle A \rrangle],S>$$
+$$<PC,H,S> \overset{xA}{\hookrightarrow} H[S[x]][A]$$
 }\end{slide}
 
 \SlideSubSection{Attribute update}
