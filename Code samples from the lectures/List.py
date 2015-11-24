@@ -42,7 +42,8 @@ class Node:
   def Fold(self,f,z):
     return f(self.head, self.tail.Fold(f,z))
 
-l = 1 << (2 << (3 << (4 << Empty)))
+#l = 1 << (2 << (3 << (4 << Empty)))
+l = Node(1, Node(2, Node(3, Node(4, Empty))))
 print("length(" + str(l) + ") = " + str(l.Length()))
 print("incr(" + str(l) + ") = " + str(l.Map(lambda x: x + 1)))
 print("even(" + str(l) + ") = " + str(l.Filter(lambda x: x % 2 == 0)))

@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ad70926e-05f5-4c20-9572-95b43ecd4b03</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Car.py</StartupFile>
+    <StartupFile>List no methods.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -27,6 +27,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dev_II_samples.py" />
+    <Compile Include="List no methods.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="List.py">
       <SubType>Code</SubType>
     </Compile>
