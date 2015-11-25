@@ -3,15 +3,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>ad70926e-05f5-4c20-9572-95b43ecd4b03</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>List no methods.py</StartupFile>
+    <ProjectGuid>1cabfbf1-30d8-44c6-8dae-16742c860a86</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>Game.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Dev II samples</Name>
-    <RootNamespace>Dev II samples</RootNamespace>
+    <Name>DEV 2 Game template</Name>
+    <RootNamespace>PyGameTest</RootNamespace>
+    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,17 +25,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Counter.py" />
-    <Compile Include="Car.py">
+    <Compile Include="Prelude.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Dev_II_samples.py" />
-    <Compile Include="List no methods.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="List.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Game.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

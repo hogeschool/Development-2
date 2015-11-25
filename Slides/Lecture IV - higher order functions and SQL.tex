@@ -5,7 +5,7 @@
 \usepackage{graphicx}
 \usepackage[space]{grffile}
 
-\title{Functions}
+\title{Higher order functions and SQL}
 
 \author{TEAM INFDEV}
 
@@ -241,21 +241,167 @@ print(combine(choose_operation(), 10, 20))
 \end{memorytable} \ \\
 \end{frame}
 
-\SlideSection{Assignments}
-\SlideSubSection{Build and test, on paper...}
+\SlideSection{List HOF's}
+\SlideSubSection{Introduction}
 \begin{slide}{
-\item A hof \texttt{map} that transforms all elements of a list:
+\item Consider our (now well-known) list implementation
+\item \texttt{Empty} and \texttt{Node} classes
+\item \texttt{IsEmpty}, \texttt{Head}, \texttt{Tail} methods
+}\end{slide}
+
+\begin{frame}[fragile]{List definition}
+\begin{lstlisting}
+class Empty:
+  def __init__(self):
+    self.IsEmpty = True
+Empty = Empty()
+
+class Node:
+  def __init__(self, x, xs):
+    self.IsEmpty = False
+    self.Head = x
+    self.Tail = xs
+
+def printList(l):
+  if(l.IsEmpty):
+    return Empty
+  else:
+    print(l.Head)
+    printList(l.Tail)
+\end{lstlisting}
+\end{frame}
+
+\SlideSubSection{Fundamental operations on lists}
+\begin{slide}{
+\item What are the \textbf{fundamental things} we wish to do with a list?
+\pause
+\item \textbf{Transform} all its elements: $N \rightarrow N$
+\pause
+\item \textbf{Filter} some of its elements: $N \rightarrow M, M \leq N$
+\pause
+\item \textbf{Fold} its elements into a single value: $N \rightarrow 1$
+}\end{slide}
+
+\begin{frame}[fragile]{Transforming a list}
+\begin{codewithblock}{\item What does the code above print? \pause \item \texttt{2, 3, 4, 5}}
+def map(l, f):
+  if(l.IsEmpty):
+    return Empty
+  else:
+    return Node(f(l.Head), map(l.Tail, f))
+
+printList(map(Node(1, Node(2, Node(3, Node(4, Empty)))), lambda x: x + 1))
+\end{codewithblock}
+\end{frame}
+
+\begin{frame}[fragile]{Transforming a list}
+\begin{codewithblock}{\item What does the code above print? \pause \item \texttt{2, 4, 6, 8}}
+def map(l, f):
+  if(l.IsEmpty):
+    return Empty
+  else:
+    return Node(f(l.Head), map(l.Tail, f))
+
+printList(map(Node(1, Node(2, Node(3, Node(4, Empty)))), lambda x: x * 2))
+\end{codewithblock}
+\end{frame}
+
+\begin{frame}[fragile]{Filtering a list}
+\begin{codewithblock}{\item What does the code above print? \pause \item \texttt{2, 4}}
+def filter(l, p):
+  if(l.IsEmpty):
+    return Empty
+  else:
+    if p(l.Head):
+      return Node(l.Head, filter(l.Tail, p))
+    else:
+      return filter(l.Tail, p)
+
+printList(filter(Node(1, Node(2, Node(3, Node(4, Empty)))), lambda x: x \% 2 == 0))
+\end{codewithblock}
+\end{frame}
+
+\begin{frame}[fragile]{Folding a list}
+\begin{codewithblock}{\item What does the code above print? \pause \item \texttt{10}}
+def fold(l, f, z):
+  if(l.IsEmpty):
+    return z
+  else:
+    return f(l.Head, fold(l.Tail, f, z))
+
+print(fold(Node(1, Node(2, Node(3, Node(4, Empty)))), lambda x, y: x + y, 0))
+\end{codewithblock}
+\end{frame}
+
+\SlideSubSection{Using HOF's}
+\begin{slide}{
+\item We can perform almost anything we need to do no lists with \texttt{map}, \texttt{filter}, and \texttt{fold}
+\item Some complex algorithm cannot be implemented relying on unbounded recursion (where we cannot estimate the maximum number of steps)
+\item This happens because \texttt{map}, \texttt{filter}, and \texttt{fold} will always terminate (if the input function terminates)
+\item Still, they are quite powerful in their capabilities
+}\end{slide}
+
+\begin{slide}{
+\item \texttt{map} is very obvious: transform elements
 \begin{itemize}
-\item \texttt{map(lambda x: x + 10, Node(1,Node(2,Node(3,Empty)))) -> Node(11,Node(12,Node(13,Empty)))}
+\item \texttt{map(cars, drive)}
+\item \texttt{map(planes, fly)}
+\item \texttt{map(bikes, pedal)}
+\item ...
 \end{itemize}
-\item A hof \texttt{filter} that removes elements from a list:
+}\end{slide}
+
+\begin{slide}{
+\item \texttt{filter} is also very obvious: remove useless elements
 \begin{itemize}
-\item \texttt{filter(lambda x: x \% 2 == 0, Node(1,Node(2,Node(3,Empty)))) -> Node(2,Empty)}
+\item \texttt{filter(cars, arrived)}
+\item \texttt{filter(planes, landed)}
+\item \texttt{filter(bikes, crashed)}
+\item ...
 \end{itemize}
-\item A hof \texttt{reduce} that condenses a list into a single value:
+}\end{slide}
+
+\begin{slide}{
+\item \texttt{fold} is much more complex
+\item Recall that it folds a list into a single value $N \rightarrow 1$
 \begin{itemize}
-\item \texttt{reduce(lambda x,y: x + y, Node(1,Node(2,Node(3,Empty)))) -> 6}
+\item \texttt{fold(l, lambda x,l: l + 1, 0) = ?} \pause \texttt{length} of \texttt{l}
+\item \texttt{fold(l, max, float('-inf')) = ?} \pause \texttt{max} of \texttt{l}
+\item \texttt{fold(l, min, float('inf')) = ?} \pause \texttt{min} of \texttt{l}
+\item \texttt{fold(cars, closerToPlayer, None) = ?} \pause \texttt{closest car to player}
+\item ...
 \end{itemize}
+}\end{slide}
+
+\SlideSubSection{Folding to lists}
+\begin{slide}{
+\item \texttt{fold} can return a value of an arbitrary type
+\item \textbf{Also a list?} \pause Yes!
+}\end{slide}
+
+\begin{frame}[fragile]{Folding to lists}
+\begin{codewithblock}{\item What does the code above print? \pause \item \texttt{2, 3, 4, 5} \item What does it look like? \pause \item \textbf{A map!}}
+printList(
+  fold(
+    Node(1, Node(2, Node(3, Node(4, Empty)))), 
+    lambda x, y: Node(x+1,y), 
+    Empty))
+\end{codewithblock}
+\end{frame}
+
+\SlideSubSection{Combine list HOF's}
+\begin{slide}{
+\item We can clearly combine \texttt{map}, \texttt{filter}, and \texttt{fold}
+\item For example, we could say \texttt{filter(map(l, f), p)} that applies a \texttt{map} first and a \texttt{filter} second
+\begin{itemize}
+\item \texttt{filter(map(cars, drive), arrived) = ?} \pause updated cars that have not yet arrived
+\end{itemize}
+}\end{slide}
+
+\SlideSection{SQL vs list HOF's}
+\SlideSubSection{Introduction}
+\begin{slide}{
+\item ...
 }\end{slide}
 
 \SlideSection{Conclusion}
@@ -272,6 +418,14 @@ print(combine(choose_operation(), 10, 20))
 \end{itemize}
 }\end{slide}
 
+\SlideSection{Assignments in class and during the practicum}
+\SlideSubSection{Build and test, on paper and then in Python}
+\begin{slide}{
+\item A \texttt{Car} class, with a \texttt{drive} function that returns the car at a new position
+\item A \texttt{driveAllCars} function that \texttt{drive}s all cars in a list through use of \texttt{map}
+\item A \texttt{removeArrived} function that removes all cars from the list that reached their destination
+}\end{slide}
+
 \begin{thankyou}
 \end{thankyou}
 
@@ -285,4 +439,17 @@ print(combine(choose_operation(), 10, 20))
 \begin{lstlisting}
 ...
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{HOF's}
+\begin{codewithblock}{\item ...}
+...
+\end{codewithblock}
+\end{frame}
+
+\begin{frame}[fragile]{HOF's}
+\begin{memorytable}
+{|c|c|}{vars}{values}
+{|c|}{addresses}{values}
+\end{memorytable} \ \\
 \end{frame}
