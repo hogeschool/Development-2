@@ -401,8 +401,155 @@ printList(
 \SlideSection{SQL vs list HOF's}
 \SlideSubSection{Introduction}
 \begin{slide}{
-\item ...
+\item We will now explore the differences and similarities between SQL and Python list HOF's
+\item SQL statements translated to Python HOF's
+\item Python HOF's translated to SQL statements 
 }\end{slide}
+
+\SlideSubSection{\texttt{SELECT}}
+\begin{slide}{
+\item Consider a simple SQL query
+\item \texttt{SELECT f(x) FROM l}
+\item \textbf{What are} \texttt{f}, \texttt{x}, \textbf{and} \texttt{l}?
+\begin{description}
+\item[\texttt{l}] is? \pause a table
+\item[\texttt{x}] is? \pause an entry from the table
+\item[\texttt{f}] is? \pause a transformation of the entries of the table
+\item[the query] returns? all elements of \texttt{l} transformed by \texttt{f}
+\end{description}
+}\end{slide}
+
+\begin{slide}{
+\item Consider a simple call to \texttt{map}
+\item \texttt{map(l, lambda x: f(x))}
+\item \textbf{What are} \texttt{f}, \texttt{x}, \textbf{and} \texttt{l}?
+\begin{description}
+\item[\texttt{l}] is? \pause a list
+\item[\texttt{x}] is? \pause an element of the list
+\item[\texttt{f}] is? \pause a transformation of the elements of the list
+\item[the call] returns? all elements of \texttt{l} transformed by \texttt{f}
+\end{description}
+}\end{slide}
+
+\begin{textslide}
+{
+\tiny
+\begin{tabular}{| l | p{1.5cm} | c | c | c | c |}
+\hline
+\textbf{Domain} & \textbf{Code} & \texttt{l} & \texttt{x} & \texttt{f} & \textbf{return} \\
+\hline
+\textbf{SQL} & \texttt{SELECT f(x) FROM l} & table & entry of \texttt{l} & transformation of \texttt{x} & all \texttt{l} transformed by \texttt{f} \\
+\hline
+\textbf{Python} & \texttt{map(l, lambda x: f(x))} & list & element of \texttt{l} & transformation of \texttt{x} & all \texttt{l} transformed by \texttt{f} \\
+\hline
+\textbf{Logic} \pause & $\{ f(x) | x \in l \}$ & set & element of \texttt{l} & function of \texttt{x} & all \texttt{l} transformed by \texttt{f} \\
+\hline
+\end{tabular}
+}
+\end{textslide}
+
+\SlideSubSection{\texttt{WHERE}}
+\begin{slide}{
+\item Consider now a restriction
+\item \texttt{SELECT * FROM l WHERE p(x)}
+\item \textbf{What are} \texttt{p}, \texttt{x}, \textbf{and} \texttt{l}?
+\begin{description}
+\item[\texttt{l}] is? \pause a table
+\item[\texttt{x}] is? \pause an entry from the table
+\item[\texttt{p}] is? \pause a condition on the entries of the table
+\item[the query] returns? all elements of \texttt{l} satisfying \texttt{p}
+\end{description}
+\item \textbf{What does this correspond to in Python?}
+}\end{slide}
+
+\begin{slide}{
+\item Let's use a \texttt{filter}!
+\item \texttt{filter(l, lambda x: p(x))}
+\item \textbf{What are} \texttt{p}, \texttt{x}, \textbf{and} \texttt{l}?
+\begin{description}
+\item[\texttt{l}] is? \pause a list
+\item[\texttt{x}] is? \pause an element of the list
+\item[\texttt{f}] is? \pause a condition on the elements of the list
+\item[the call] returns? all elements of \texttt{l} satisfying \texttt{f}
+\end{description}
+}\end{slide}
+
+\begin{textslide}
+{
+\tiny
+\begin{tabular}{| l | p{2cm} | c | c | c | c |}
+\hline
+\textbf{Domain} & \textbf{Code} & \texttt{l} & \texttt{x} & \texttt{f} & \textbf{return} \\
+\hline
+\textbf{SQL} & \texttt{SELECT * FROM l WHERE p(x)} & table & entry of \texttt{l} & condition on \texttt{x} & all \texttt{l} satisfying \texttt{p} \\
+\hline
+\textbf{Python} & \texttt{filter(l, lambda x: p(x))} & list & element of \texttt{l} & condition on \texttt{x} & all \texttt{l} satisfying \texttt{p} \\
+\hline
+\textbf{Logic} \pause & $\{ x | x \in l \wedge p(x) \}$ & set & element of \texttt{l} & predicate on \texttt{x} & \texttt{l} restricted to/by \texttt{f} \\
+\hline
+\end{tabular}
+}
+\end{textslide}
+
+\SlideSubSection{\texttt{AGGREGATE}}
+\begin{slide}{
+\item Consider now an aggregation
+\item \texttt{SELECT COUNT(*) FROM l}
+\begin{description}
+\item[the query] returns? the number of elements of \texttt{l}
+\end{description}
+\item \textbf{What does this correspond to in Python?}
+}\end{slide}
+
+\begin{slide}{
+\item Let's use a \texttt{fold}!
+\item \texttt{fold(l, (lambda x,c: c+1), 0)}
+\begin{description}
+\item[the call] returns? the number of elements of \texttt{l}
+\end{description}
+}\end{slide}
+
+\begin{textslide}
+{
+\tiny
+\begin{tabular}{| l | c | c | c |}
+\hline
+\textbf{Domain} & \textbf{Code} & \texttt{l} & \textbf{return} \\
+\hline
+\textbf{SQL} & \texttt{SELECT COUNT(*) FROM l} & table & number of entries of \texttt{l} \\
+\hline
+\textbf{Python} & \texttt{fold(l, lambda x,c: c+1, 0)} & list & number of elements of \texttt{l} \\
+\hline
+\textbf{Logic} \pause & $(|+1|) l $ & set & size of \texttt{l} \\
+\hline
+\end{tabular}
+}
+\end{textslide}
+
+\SlideSubSection{General considerations}
+\begin{slide}{
+\item There is no real conceptual difference between SQL and list HOF's
+\item The mapping is quite straightforward
+}\end{slide}
+
+\begin{textslide}
+{
+\tiny
+\begin{tabular}{| p{3cm} | c | c |}
+\hline
+\textbf{Concept} & \textbf{SQL} & \textbf{HOF's} \\
+\hline
+\textbf{element transformation} & \texttt{SELECT} & \texttt{map} \\
+\hline
+\textbf{element removal} & \texttt{WHERE} & \texttt{filter} \\
+\hline
+\textbf{element folding} & \texttt{SUM, COUNT, AVG, ...} & \texttt{fold} \\
+\hline
+\textbf{cartesian product} & \texttt{JOIN} & \texttt{nesting of HOF's}\footnote{A \texttt{filter} within a \texttt{map} is a basic join.} \\
+\hline
+\end{tabular}
+}
+\end{textslide}
 
 \SlideSection{Conclusion}
 \SlideSubSection{Lecture topics}
@@ -416,14 +563,15 @@ printList(
 \item Algorithms with ``holes'' given as higher order parameters
 \item Algorithms that return other algorithms as higher order results
 \end{itemize}
+\item This is extremely powerful, as it even allows us to reimplement apparently unrelated concepts such as SQL operators
 }\end{slide}
 
 \SlideSection{Assignments in class and during the practicum}
 \SlideSubSection{Build and test, on paper and then in Python}
 \begin{slide}{
 \item A \texttt{Car} class, with a \texttt{drive} function that returns the car at a new position
-\item A \texttt{driveAllCars} function that \texttt{drive}s all cars in a list through use of \texttt{map}
-\item A \texttt{removeArrived} function that removes all cars from the list that reached their destination
+\item A \texttt{driveAllCars} function that \texttt{drive}s all cars in a list through the use of \texttt{map}
+\item A \texttt{removeArrived} function that removes all cars from the list that reached their destination through the use of \texttt{filter}
 }\end{slide}
 
 \begin{thankyou}

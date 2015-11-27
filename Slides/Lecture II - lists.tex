@@ -307,7 +307,7 @@ while not(x.IsEmpty):
   x = x.Tail
 \end{lstlisting}
 
-What gets printed? \pause \texttt{H[x][Value] = H[2][Value] = 3}
+What gets printed? \pause \texttt{H[S[x]][Value] = H[2][Value] = 3}
 
 \pause
 
@@ -339,7 +339,7 @@ while not(x.IsEmpty):
   x = x.Tail
 \end{lstlisting}
 
-\textbf{Where is x.Tail}? \pause \texttt{H[x][Tail] = H[2][Tail] = ref(1)}
+\textbf{Where is x.Tail}? \pause \texttt{H[S[x]][Tail] = H[2][Tail] = ref(1)}
 
 \pause
 
@@ -371,7 +371,7 @@ while not(x.IsEmpty):
   x = x.Tail
 \end{lstlisting}
 
-\textbf{Where is x.Tail}? \pause \texttt{H[x][Tail] = H[1][Tail] = ref(0)}
+\textbf{Where is x.Tail}? \pause \texttt{H[S[x]][Tail] = H[1][Tail] = ref(0)}
 
 \pause
 
@@ -403,7 +403,7 @@ while not(x.IsEmpty):
   x = x.Tail
 \end{lstlisting}
 
-\textbf{What is the value of x.IsEmpty}? \pause \texttt{H[x][IsEmpty] = H[0][IsEmpty] = True}
+\textbf{What is the value of x.IsEmpty}? \pause \texttt{H[S[x]][IsEmpty] = H[0][IsEmpty] = True}
 
 \pause
 
