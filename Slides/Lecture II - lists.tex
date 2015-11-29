@@ -174,7 +174,7 @@ class Node:
 l = Empty
 count = int(input("How many elements?"))
 for i in range(0, count):
-  v = int(input("Insert the next element")
+  v = int(input("Insert the next element"))
   l = Node(v, l)
 \end{lstlisting}
 
@@ -204,7 +204,7 @@ for i in range(0, count):
 l = Empty
 count = int(input("How many elements?"))
 for i in range(0, count):
-  v = int(input("Insert the next element")
+  v = int(input("Insert the next element"))
   l = Node(v, l)
 \end{lstlisting}
 
@@ -235,7 +235,7 @@ for i in range(0, count):
 l = Empty
 count = int(input("How many elements?"))
 for i in range(0, count):
-  v = int(input("Insert the next element")
+  v = int(input("Insert the next element"))
   l = Node(v, l)
 \end{lstlisting}
 
@@ -266,7 +266,7 @@ for i in range(0, count):
 {1 & ref(2)}
 {|c|c|c|}
 {0 & 1 & 2}
-{ [ E $\mapsto$ T ] & [ E $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ E $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
+{ [ I $\mapsto$ T ] & [ I $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ I $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
 \end{memorytable}
  \ \\
 
@@ -285,7 +285,7 @@ while not(x.IsEmpty):
 {2 & ref(2) & \red{ref(2)}}
 {|c|c|c|}
 {0 & 1 & 2}
-{ [ E $\mapsto$ T ] & [ E $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ E $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
+{ [ I $\mapsto$ T ] & [ I $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ I $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
 \end{memorytable}
 \end{frame}
 
@@ -296,7 +296,7 @@ while not(x.IsEmpty):
 {2 & ref(2) & ref(2)}
 {|c|c|c|}
 {0 & 1 & 2}
-{ [ E $\mapsto$ T ] & [ E $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ E $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
+{ [ I $\mapsto$ T ] & [ I $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ I $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
 \end{memorytable}
  \ \\
 
@@ -317,7 +317,7 @@ What gets printed? \pause \texttt{H[S[x]][Value] = H[2][Value] = 3}
 {\red{3} & ref(2) & \red{ref(2)}}
 {|c|c|c|}
 {0 & 1 & 2}
-{ [ E $\mapsto$ T ] & [ E $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ E $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
+{ [ I $\mapsto$ T ] & [ I $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ I $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
 \end{memorytable}
 \end{frame}
 
@@ -328,7 +328,7 @@ What gets printed? \pause \texttt{H[S[x]][Value] = H[2][Value] = 3}
 {3 & ref(2) & ref(2)}
 {|c|c|c|}
 {0 & 1 & 2}
-{ [ E $\mapsto$ T ] & [ E $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ E $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
+{ [ I $\mapsto$ T ] & [ I $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ I $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
 \end{memorytable}
  \ \\
 
@@ -349,7 +349,7 @@ while not(x.IsEmpty):
 {\red{4} & ref(2) & \red{ref(1)}}
 {|c|c|c|}
 {0 & 1 & 2}
-{ [ E $\mapsto$ T ] & [ E $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ E $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
+{ [ I $\mapsto$ T ] & [ I $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ I $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
 \end{memorytable}
 \end{frame}
 
@@ -360,7 +360,7 @@ while not(x.IsEmpty):
 {3 & ref(2) & ref(1)}
 {|c|c|c|}
 {0 & 1 & 2}
-{ [ E $\mapsto$ T ] & [ E $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ E $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
+{ [ I $\mapsto$ T ] & [ I $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ I $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
 \end{memorytable}
  \ \\
 
@@ -381,7 +381,7 @@ while not(x.IsEmpty):
 {\red{4} & ref(2) & \red{ref(0)}}
 {|c|c|c|}
 {0 & 1 & 2}
-{ [ E $\mapsto$ T ] & [ E $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ E $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
+{ [ I $\mapsto$ T ] & [ I $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ I $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
 \end{memorytable}
 \end{frame}
 
@@ -392,7 +392,7 @@ while not(x.IsEmpty):
 {2 & ref(2) & ref(0)}
 {|c|c|c|}
 {0 & 1 & 2}
-{ [ E $\mapsto$ T ] & [ E $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ E $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
+{ [ I $\mapsto$ T ] & [ I $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ I $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
 \end{memorytable}
  \ \\
 
@@ -413,7 +413,7 @@ while not(x.IsEmpty):
 {\red{5} & ref(2) & ref(0)}
 {|c|c|c|}
 {0 & 1 & 2}
-{ [ E $\mapsto$ T ] & [ E $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ E $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
+{ [ I $\mapsto$ T ] & [ I $\mapsto$ F; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [ I $\mapsto$ F; V $\mapsto$ 3; T $\mapsto$ ref(1)] }
 \end{memorytable}
 \end{frame}
 

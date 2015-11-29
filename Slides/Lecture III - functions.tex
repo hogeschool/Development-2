@@ -186,7 +186,7 @@ print(length(Node(10, Empty)))
 {9 & nil & 2 & ref(1) }
 {|c|c|}
 {0 & 1}
-{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
+{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
 \end{memorytable}
 \end{frame}
 
@@ -197,7 +197,7 @@ print(length(Node(10, Empty)))
 {9 & nil & 2 & ref(1) }
 {|c|c|}
 {0 & 1}
-{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
+{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
 \end{memorytable} \ \\
 
 \begin{lstlisting}
@@ -220,7 +220,7 @@ print(length(Node(10, Empty)))
 {9 & nil & \red{3} & ref(1) & \red{0}}
 {|c|c|}
 {0 & 1}
-{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
+{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
 \end{memorytable}
 \end{frame}
 
@@ -231,7 +231,7 @@ print(length(Node(10, Empty)))
 {9 & length & 3 & ref(1) & 0 }
 {|c|c|}
 {0 & 1}
-{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
+{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
 \end{memorytable} \ \\
 
 \begin{lstlisting}
@@ -254,7 +254,7 @@ print(length(Node(10, Empty)))
 {9 & nil & \red{4} & ref(1) & 0 & \red{ref(1)} }
 {|c|c|}
 {0 & 1}
-{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
+{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
 \end{memorytable} \ \\
 \end{frame}
 
@@ -267,7 +267,7 @@ print(length(Node(10, Empty)))
 {9 & nil & \red{7} & ref(1) & \red{1} & \red{ref(0)} }
 {|c|c|}
 {0 & 1}
-{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
+{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
 \end{memorytable} \ \\
 
 \begin{lstlisting}
@@ -294,7 +294,7 @@ print(length(Node(10, Empty)))
 {9 & \red{1} }
 {|c|c|}
 {0 & 1}
-{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
+{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 10; T $\mapsto$ ref(0)]}
 \end{memorytable} \ \\
 \end{frame}
 
@@ -667,14 +667,14 @@ print(length(Node(1,Node(2,Empty))))
 
 \begin{memorytable}
 {|c|c|c|c|}{PC & length & PC & l}{7 & \red{nil} & 2 & \red{ref(2)}}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 \end{frame}
 
 \begin{frame}[fragile]{Recursion}
 \begin{memorytable}
 {|c|c|c|c|}{PC & length & PC & l}{7 & nil & 2 & ref(2)}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 
 \begin{lstlisting}
@@ -691,14 +691,14 @@ print(length(Node(1,Node(2,Empty))))
 
 \begin{memorytable}
 {|c|c|c|c|}{PC & length & PC & l}{7 & nil & \red{5} & ref(2)}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 \end{frame}
 
 \begin{frame}[fragile]{Recursion}
 \begin{memorytable}
 {|c|c|c|c|}{PC & length & PC & l}{7 & nil & 5 & ref(2)}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 
 \begin{lstlisting}
@@ -715,14 +715,14 @@ print(length(Node(1,Node(2,Empty))))
 
 \begin{memorytable}
 {|c|c|c|c|c|c|c|}{PC & length & PC & l & length & PC & l}{7 & nil & 5 & ref(2) & \red{nil} & \red{2} & \red{ref(1)}}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 \end{frame}
 
 \begin{frame}[fragile]{Recursion}
 \begin{memorytable}
 {|c|c|c|c|c|c|c|}{PC & length & PC & l & length & PC & l}{7 & nil & 5 & ref(2) & nil & 2 & ref(1)}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 
 \begin{lstlisting}
@@ -739,14 +739,14 @@ print(length(Node(1,Node(2,Empty))))
 
 \begin{memorytable}
 {|c|c|c|c|c|c|c|}{PC & length & PC & l & length & PC & l}{7 & nil & 5 & ref(2) & nil & \red{5} & ref(1)}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 \end{frame}
 
 \begin{frame}[fragile]{Recursion}
 \begin{memorytable}
 {|c|c|c|c|c|c|c|c|c|c|}{PC & length & PC & l & length & PC & l & length & PC & l}{7 & nil & 5 & ref(2) & nil & 5 & ref(1) & \red{nil} & \red{2} & \red{ref(0)}}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 
 \begin{lstlisting}
@@ -763,14 +763,14 @@ print(length(Node(1,Node(2,Empty))))
 
 \begin{memorytable}
 {|c|c|c|c|c|c|c|c|c|c|}{PC & length & PC & l & length & PC & l & length & PC & l}{7 & nil & 5 & ref(2) & nil & 5 & ref(1) & nil & \red{3} & ref(0)}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 \end{frame}
 
 \begin{frame}[fragile]{Recursion}
 \begin{memorytable}
 {|c|c|c|c|c|c|c|c|c|c|}{PC & length & PC & l & length & PC & l & length & PC & l}{7 & nil & 5 & ref(2) & nil & 5 & ref(1) & nil & 3 & ref(0)}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 
 \begin{lstlisting}
@@ -787,14 +787,14 @@ print(length(Node(1,Node(2,Empty))))
 
 \begin{memorytable}
 {|c|c|c|c|c|c|c|c|}{PC & length & PC & l & length & PC & l & length}{7 & nil & 5 & ref(2) & nil & 5 & ref(1) & \red{0}}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 \end{frame}
 
 \begin{frame}[fragile]{Recursion}
 \begin{memorytable}
 {|c|c|c|c|c|c|c|c|}{PC & length & PC & l & length & PC & l & length}{7 & nil & 5 & ref(2) & nil & 5 & ref(1) & 0}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 
 \begin{lstlisting}
@@ -811,14 +811,14 @@ print(length(Node(1,Node(2,Empty))))
 
 \begin{memorytable}
 {|c|c|c|c|c|}{PC & length & PC & l & length}{7 & nil & 5 & ref(2) & \red{0+1}}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 \end{frame}
 
 \begin{frame}[fragile]{Recursion}
 \begin{memorytable}
 {|c|c|c|c|c|}{PC & length & PC & l & length}{7 & nil & 5 & ref(2) & 1}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 
 \begin{lstlisting}
@@ -835,14 +835,14 @@ print(length(Node(1,Node(2,Empty))))
 
 \begin{memorytable}
 {|c|c|}{PC & length}{7 & \red{2}}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 \end{frame}
 
 \begin{frame}[fragile]{Recursion}
 \begin{memorytable}
 {|c|c|c|c|c|}{PC & length}{7 & 2}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 
 \begin{lstlisting}
@@ -859,7 +859,7 @@ print(length(Node(1,Node(2,Empty))))
 
 \begin{memorytable}
 {|c|}{PC}{\red{8}}
-{|c|c|c|}{0 & 1 & 2}{[E $\mapsto$ true] & [E $\mapsto$ false; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [E $\mapsto$ false; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
+{|c|c|c|}{0 & 1 & 2}{[I $\mapsto$ True] & [I $\mapsto$ False; V $\mapsto$ 2; T $\mapsto$ ref(0)] & [I $\mapsto$ False; V $\mapsto$ 1; T $\mapsto$ ref(1)]}
 \end{memorytable} \ \\
 \end{frame}
 
