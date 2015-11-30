@@ -2,23 +2,20 @@
 What follows is a concrete example of the exam.
 
 
-\paragraph{Question I: formal rules} \ \\
+\paragraph{Question I: abstracting patterns with functions} \ \\
 
-\textit{You start at point (0,0). Take a step in the direction (10,0) until you are above point (45,0). Then take five steps in the direction (0,2). Where do you end up?}
+\textit{Define a \texttt{map} function to transform all elements of the input list (defined with \texttt{Empty} and \texttt{Node}, see Appendix) according to a given function \texttt{f}.}
 
 \ \\ 
 
-\textbf{Answer:} \textit{The trajectory is:}
+\textbf{Answer:} \textit{The resulting code is:}
 
 \begin{lstlisting}
-
-P1 = (50,0)
- +----- P2 = (50,10)
- |
- |
- |
- |
-P0 = (0,0)
+def map(l,f):
+  if l.IsEmpty():
+    return Empty()
+  else:
+    return Node(f(l.Head()), map(l.Tail(), f))
 \end{lstlisting}
 
 \ \\ 
@@ -26,120 +23,74 @@ P0 = (0,0)
 \textbf{Points:} \textit{25\%.}
 
 \ \\ 
+
+\textbf{Grading:} \textit{All points for correct function, minor mistakes (wrong check, some elements might be missing, etc.) half points, wrong function (infinite recursion, iterative version, etc.) zero points.}
+
 \ \\ 
 
-\paragraph{Question II: program state} \ \\ 
+\paragraph{Question II: runtime behaviour of functions} \ \\
 
-\textit{Fill-in the program state with the values that the variables assume while running the sample below.}
+\textit{Given the following function definition and a sample call, show stack and heap at all steps of the computation.}
 
 \begin{lstlisting}
-y = 1
-for i in range(0, 5):
-    y = y * 2
+def filter(l,p):
+  if p(l.head):
+    return Node(l.head, filter(l.tail, p))
+  else:
+    return filter(l.tail, p)
+
+filter(Node(1,Node(2,Empty())), lambda x: x >= 2)
 \end{lstlisting}
 
 \ \\ 
 
-\textbf{Answer:} \textit{The variable allocations are:}
+\textbf{Answer:} \textit{Each call of the stack should contain a value for \texttt{l} and one for \texttt{p}. The heap should contain a value for each node of the list, and for the lambda function of \texttt{p}.}
 
-\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
-\hline
-\textbf{y} & 1    & 1 & 2 & 2 & 4 & 4 & 8 & 8 & 16 & 16 & 32 \\
-\hline
-\textbf{i} & n.a. & 0 & 0 & 1 & 1 & 2 & 2 & 3 & 3  &  4 &  4 \\
-\hline
-\end{tabular}
+\begin{lstlisting}
+S: PC   filter   PC     l       p
+    7    nil      2   ref(2)  ref(3)
+    
+H: 0             1                        2                      3
+  [ ]   [head->1;tail->ref(0)]   [head->2;tail->ref(1)]   lambda x: x >= 2
+\end{lstlisting}
 
-\ \\
+\textit{After each step, the stack grows but the heap does not:}
+
+\begin{lstlisting}
+S: PC   filter   PC     l       p    filter   PC     l       p
+    7    nil      5   ref(2)  ref(3)  nil      2   ref(1)  ref(3)
+    
+H: 0             1                        2                      3
+  [ ]   [head->1;tail->ref(0)]   [head->2;tail->ref(1)]   lambda x: x >= 2
+\end{lstlisting}
+
+The rest follows similarly. Watch out for reconstruction of recursive result with correct elements wrt returned value of \texttt{p(l.head)}.
 
 \textbf{Points:} \textit{25\%.}
 
 \ \\ 
 
-\textbf{Grading:} \textit{Full points if all values are correctly listed in the right order. Half points if at least half of values are listed in the right order. Zero points otherwise.}
+\textbf{Grading:} \textit{All points for all stack frames and values, half points for at least half correct stack frames and values, otherwise zero points.}
 
 \ \\ 
 
-\textbf{Associated learning goals:} \texttt{CMC}.
+\paragraph{Question III: classes} \ \\
 
-\ \\ 
-
-\paragraph{Question III: variables, expressions, and data types}
-
-\ \\ 
-
-\textit{What is the value and the type of all variables after execution of the following code?}
-\begin{lstlisting}
-v = 0
-i = "Hello + world"
-j = "Hello" + "world"
-k = 10 / 3
-\end{lstlisting}
-
-\ \\ 
-
-\textbf{Answer:} \textit{The value and type of all variables after execution is:}
-
-\begin{tabular}{| l | c | c | }
-\hline
-\textbf{Variable} & \textbf{Value} & \textbf{Type} \\
-\hline
-v & 0 & int \\
-\hline
-i & 'Hello + world' & str \\
-\hline
-j & 'Helloworld' & str \\
-\hline
-k & 3 & int \\
-\hline
-l & 3.3333$\dots$ & float \\
-\hline
-\end{tabular}
-
-\ \\ 
-
-\textbf{Points:} \textit{25\%.}
-
-\ \\ 
-
-\textbf{Grading:} \textit{All values and types are correct: full-points. At least half the values and at least half the types are correct: half points. Zero points otherwise.}
-
-\ \\ 
-
-\textbf{Associated learning goals:} \texttt{VAR}, \texttt{EXPR}.
-
-\ \\ 
-
-\paragraph{Question IV: control flow}
-
-\ \\ 
-
-\textbf{General shape of the question:} \textit{What is the value of all variables after execution of the following code?}
-
-\ \\ 
-
-\textbf{Concrete example of question:} \textit{What is the value of all variables after execution of the following code?}
-
-\begin{lstlisting}
-v = 0
-for i in range(1,15):
-  if (i % 2 == 0) & (i % 3 == 0):
-    v = v + i
-\end{lstlisting}
-
-\ \\ 
-
-\textbf{Concrete example of answer:} \textit{The value of all variables after execution is:}
-
-\begin{tabular}{| l | c |}
-\hline
-\textbf{Variable} & \textbf{Value} \\
-\hline
-\texttt{i} & \texttt{14} \\
-\hline
-\texttt{v} & \texttt{18} \\
-\hline
-\end{tabular}
+\textbf{Concrete example of question:} \textit{Define a \texttt{Train} class with attributes:
+\begin{itemize}
+\item \texttt{Position} of the ship in the map (a 2D vector, see Appendix)
+\item amount of \texttt{Passengers}
+\item amount of \texttt{Containers}
+\end{itemize}
+and methods:
+\begin{itemize}
+\item \texttt{TravelTo} that receives a \texttt{Station}\footnote{The \texttt{Station} class has at least the attributes \texttt{Position}, \texttt{WaitingPassengers}, \texttt{WaitingContainers}} as a destination and changes
+\begin{itemize}
+\item the \texttt{Position} of the train to the \texttt{Position} of the station
+\item the \texttt{Passengers} of the train (and the \texttt{WaitingPassengers} of the station)
+\item the \texttt{Containers} of the train (and the \texttt{WaitingContainers} of the station)
+\end{itemize}
+\end{itemize}}
 
 \ \\ 
 
@@ -147,10 +98,96 @@ for i in range(1,15):
 
 \ \\ 
 
-\textbf{Grading:} \textit{All values are correct: full-points. At least half the values are correct: half points. Zero points otherwise.}
+\textbf{Grading:} \textit{All points for all attributes and methods, half points for at least half correct attributes and methods, otherwise zero points.}
 
 \ \\ 
 
-\textbf{Associated learning goals:} \texttt{COND}, \texttt{LOOP}.
+\textbf{Answer:} \textit{The implemented class is:}
+
+\begin{lstlisting}
+class Station:
+  def __init__(self, p, wp, wc):
+    self.Position = p
+    self.WaitingPassengers = wp
+    self.WaitingContainers = wc
+
+class Ship:
+  def __init__(self, p):
+    self.Position = p
+    self.Passengers = 0
+    self.Containers = 0
+  def NavigateTo(self, port):
+    self.Position = port.Position
+    self.Passengers = port.WaitingPassengers
+    port.WaitingPassengers = 0
+    self.Containers = port.WaitingContainers
+    port.WaitingContainers = 0
+\end{lstlisting}
+
+\paragraph{Question IV: standard libraries} \ \\
+
+\textbf{Concrete example of question:} \textit{Define a loop that adds all odd elements in a given Python list \texttt{l} which contains only integers. If the list is empty the result should be \texttt{0}. Finally, print the result.}
 
 \ \\ 
+
+\textbf{Points:} \textit{25\%.}
+
+\ \\ 
+
+\textbf{Grading:} \textit{All points for correct iteration and sum, half points for wrong use of indices or wrong iteration, zero points otherwise.}
+
+\ \\ 
+
+\textbf{Answer:} \textit{The implemented class is:}
+
+\begin{lstlisting}
+l = [1,2,3,4]
+res = 0
+for x in l:
+  if x % 2 == 1:
+    res = res + x
+print(res)
+\end{lstlisting}
+
+\subsection{Exam appendix}
+
+\paragraph{List implementation}
+\begin{lstlisting}
+class Empty:
+  def IsEmpty(): return True
+Empty = Empty()
+
+class Node:
+  def IsEmpty(): return False
+  def Head(self): return self.Head
+  def Tail(self): return self.Tail
+  def __init__(self, x, xs):
+    self.head = x
+    self.tail = xs
+\end{lstlisting}
+
+\paragraph{Vector2 implementation}
+\begin{lstlisting}
+class Vector2:
+  def __init__(self, x, y):
+    self.X = x
+    self.Y = y
+  def Length(self):
+    return math.sqrt(self.X * self.X + self.Y * self.Y)
+  def __neg__(self):
+    return Vector2(-self.X, -self.Y)
+  def __add__(self, other):
+    return Vector2(self.X + other.X, self.Y + other.Y)
+  def __sub__(self, other):
+    return self + (-other);
+  def __mul__(self, k):
+    return Vector2(self.X * k, self.Y * k)
+  def __str__(self):
+    return "(" + str(self.X) + "," + str(self.Y) + ")"
+  def Zero(): 
+    return Vector2(0.0, 0.0)
+  def UnitX(): 
+    return Vector2(1.0, 0.0)
+  def UnitY(): 
+    return Vector2(0.0, 1.0)
+\end{lstlisting}
