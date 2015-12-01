@@ -1,5 +1,7 @@
 ﻿import pygame
 import random
+import os
+
 class Cons:
   def __init__(self, value, tail):
     self.Tail = tail
@@ -53,7 +55,7 @@ class Node:
     if self.Visited == False:
       self.Visited = True
       if self.Traverseable:
-        _width = self.Offset / 3
+        _width = int(self.Offset / 3)
         dim = 2
         screen.blit(pygame.transform.scale(self.DefaultTexture, (_width + dim, _width + dim)), 
                     (_width + self.Position[0] * self.Offset, 
@@ -98,9 +100,9 @@ def build_square_matrix (dimension, offset):
     for column in range(dimension):
       if (random.uniform(0, 1) > 0.8):
         properties = Cons(NotTraverseable, Empty)
-        node = Node((column, row), "Content\house.png", offset, properties)
+        node = Node((column, row), os.path.join("Content","house.png"), offset, properties)
       else:
-        node = Node((column, row), "Content\white_pixel.png", offset, Empty)
+        node = Node((column, row), os.path.join("Content","white_pixel.png"), offset, Empty)
       
       if row == 0 and column == 0:
         entry_point = node
