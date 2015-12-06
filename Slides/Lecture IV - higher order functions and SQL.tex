@@ -123,7 +123,7 @@ or
 \begin{memorytable}
 {|c|c|c|c|c|c|}
 {PC & combine & PC & op & x & y}
-{8 & nil & 2 & ref(times) & 10 & 20}
+{9 & nil & 2 & ref(times) & 10 & 20}
 {|c|}{}{}
 \end{memorytable} \ \\
 
@@ -209,6 +209,7 @@ def choose_operation():
     return lambda x,y: x-y
   else:
     return lambda x,y: x*y
+    
 print(combine(choose_operation(), 10, 20))
 \end{codewithblock}
 \end{frame}
@@ -226,6 +227,7 @@ def choose_operation():
     return lambda x,y: x-y
   else:
     return lambda x,y: x*y
+    
 print(combine(choose_operation(), 10, 20))
 \end{lstlisting}
 
@@ -236,7 +238,7 @@ print(combine(choose_operation(), 10, 20))
 \begin{memorytable}
 {|c|c|}
 {PC & choose\_operation}
-{12 & ref(0)}
+{13 & ref(0)}
 {|c|}{0}{lambda x,y: x+y}
 \end{memorytable} \ \\
 \end{frame}

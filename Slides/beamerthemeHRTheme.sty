@@ -5,7 +5,7 @@
 \newcommand{\ts}{\textbackslash}
 \usepackage{listings}
 \lstnewenvironment{codewithblock}[1]{
-	\lstset{language=ML,
+	\lstset{escapeinside={\%*}{*)},language=ML,
     mathescape=true,
     frame=single,
     numbers=left,
@@ -18,7 +18,7 @@
 			#1
 			\end{itemize}
 		\end{block}}
-\lstset{language=ML,
+\lstset{escapeinside={\%*}{*)},language=ML,
   mathescape=true,
   frame=single,
   numbers=left,
