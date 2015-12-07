@@ -1,0 +1,88 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{wasysym}
+\usepackage{graphicx}
+\begin{document}
+\title{Assignment 2\\DEV 2 - Year 2015-2016}
+\author{The Dev TEAM}
+\maketitle
+
+
+\section{Goal and description}
+The goal is to improve your design and implementation skills on data structures and methods. For this purpose we created an improved version \textit{incomplete}of the city simulation from \textit{assignment 1}. In this version we rendered besides the city and it's roads new game elements: bridges, rivers, boats and harbors . Your task is to:
+\begin{itemize}
+\item design and implement the boat data structure  
+\item both cars and boats should be able to move through the scene
+\end{itemize}
+	
+	
+\section{Software requirements}
+To work with the simulation you need \texttt{PyGame 3.4} and \texttt{Python 3.4}. You can download the \texttt{PyGame 3.4 x86} \href{https://bitbucket.org/pygame/pygame/downloads/pygame-1.9.2a0-hg_ea3b3bb8714a.win32-py3.4.msi}{\textcolor{red}{click me}}. PyGame is a set of Python modules designed for writing games.	The simulation comes with a \textit{template project}. The template is available on N@school and GitHub under the voice \texttt{Assignment 1}.
+reuse the car data structure 
+extend the car with can remove and texture
+\section{Details}
+
+\paragraph{Classes}
+As you will see in the template we have improved our old classes and the logic. We added new properties to \texttt{Tile.py}: river, bridge, harbor. You can use those properties to move cars or boats(a car cannot seal and a boat cannot drive on the motor way)
+
+\noindent
+NB. You need to study those structures and codes before you start with your implementation. 
+	
+\paragraph{Game.py}
+
+
+We also we provide you a main loop in \texttt{Game.py}. The \texttt{Main} function is the entry point of the game. Precisely the in the \texttt{Main} you find the a block of code which runs indefinitely the game. We extended the old main loop so to draw the new game elements. The main loop is \texttt{missing} the calls to the draw and update functions.
+
+
+\section{Tasks}	
+
+\paragraph{Task 1} \textbf{[class, attribute]} \textit{Design} the \texttt{boat} data structure that should at least provide the following attributes:
+\begin{itemize}[noitemsep,nolistsep]
+	\item A position, which references the node the boat is in
+	\item A canRemove, which tells whether to remove the boat from the scene
+	\item A texture, where you store the image of your boat
+\end{itemize}
+Reuse the car data structure and extend it with the attributes canRemove and  texture. \\To load a texture from the content folder use the following instruction: \\
+\texttt{pygame.image.load(os.path.join("Content",<<your image>>)).convert\_ alpha()}
+
+\paragraph{Task 2} \textbf{[methods]}  extend car and boat data structures with methods for the update and draw behavior.   
+\begin{itemize}[noitemsep,nolistsep]
+	\item \textbf{Update} the current entity by moving it through the scene respecting the properties of the tiles. If an entity enters a garage, a harbor or leaves the map its attribute canRemove is set to true. 
+	\item \textbf{Draw} the current entities. The method has the same logic as the draw function from assignment 1. Change the code if necessary.  
+\end{itemize}
+
+\paragraph{Task 3} \textbf{[functions]} in the file Game.py add the following codes:
+  \begin{itemize}
+  	\item Add an update boats and update cars functions that iterate through their respective lists and update each entity. Filter the entities whose canRemove attribute is set to true.
+  	\item Add a draw boats and draw cars functions that iterate through their respective lists and draw each entity.
+  	\item In the main loop find the proper location where to call the above updates and draws functions.
+  	\item Add boats and ships according to some conditions (for example every five iterations of the main loop). Use entry rivers and entry road to place your new ships and cars accordingly. 
+  \end{itemize}
+
+\section{Submission and deadline}
+
+\noindent
+Contribution: \textit{Groups of 2 students is allowed with individual responsibility}
+
+\noindent
+What: \textit{One PDF per student for all code + comments (comments: explain your code)}
+
+\noindent
+When: \textit{The Friday of week 6}
+
+\noindent
+Where: \textit{On N@school}
+
+
+\huge
+\centering
+GOOD LUCK!!! The Dev TEAM \smiley
+
+	
+\end{document}
