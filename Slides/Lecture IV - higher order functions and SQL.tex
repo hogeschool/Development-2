@@ -319,7 +319,7 @@ def filter(l, p):
     else:
       return filter(l.Tail, p)
 
-printList(filter(Node(1, Node(2, Node(3, Node(4, Empty)))), lambda x: x \% 2 == 0))
+printList(filter(Node(1, Node(2, Node(3, Node(4, Empty)))), lambda x: x % 2 == 0))
 \end{codewithblock}
 \end{frame}
 
@@ -471,8 +471,8 @@ printList(
 \begin{description}
 \item[\texttt{l}] is? \pause a list
 \item[\texttt{x}] is? \pause an element of the list
-\item[\texttt{f}] is? \pause a condition on the elements of the list
-\item[the call] returns? all elements of \texttt{l} satisfying \texttt{f}
+\item[\texttt{p}] is? \pause a condition on the elements of the list
+\item[the call] returns? all elements of \texttt{l} satisfying \texttt{p}
 \end{description}
 }\end{slide}
 
@@ -481,7 +481,7 @@ printList(
 \tiny
 \begin{tabular}{| l | p{2cm} | c | c | c | c |}
 \hline
-\textbf{Domain} & \textbf{Code} & \texttt{l} & \texttt{x} & \texttt{f} & \textbf{return} \\
+\textbf{Domain} & \textbf{Code} & \texttt{l} & \texttt{x} & \texttt{p} & \textbf{return} \\
 \hline
 \textbf{SQL} & \texttt{SELECT * FROM l WHERE p(x)} & table & entry of \texttt{l} & condition on \texttt{x} & all \texttt{l} satisfying \texttt{p} \\
 \hline
