@@ -213,7 +213,7 @@ for i in range(0, count):
 \begin{memorytable}
 {|c|c|c|c|c|}
 {PC & l & count & i & v }
-{\red{3} & ref(1) & 5 & 0 & 80085 }
+{\red{3} & ref(1) & 5 & 1 & 80085 }
 {|c|c|}
 {0 & 1}
 { [ IsEmpty $\mapsto$ True ] & [ IsEmpty $\mapsto$ False; Value $\mapsto$ 80085; Tail $\mapsto$ ref(0)] }
@@ -224,7 +224,7 @@ for i in range(0, count):
 \begin{memorytable}
 {|c|c|c|c|c|}
 {PC & l & count & i & v }
-{5 & ref(1) & 5 & 1 & 8078 }
+{5 & ref(1) & 5 & 2 & 8078 }
 {|c|c|}
 {0 & 1}
 { ... & [ IsEmpty $\mapsto$ False; Value $\mapsto$ 80085; Tail $\mapsto$ ref(0)] }
@@ -244,7 +244,7 @@ for i in range(0, count):
 \begin{memorytable}
 {|c|c|c|c|c|}
 {PC & l & count & i & v }
-{5 & ref(1) & 5 & 1 & 8078 }
+{3 & ref(2) & 5 & 3 & 8078 }
 {|c|c|c|}
 {0 & 1 & 2}
 { ... & ... & [ IsEmpty $\mapsto$ False; Value $\mapsto$ 8078; Tail $\mapsto$ ref(1)] }
