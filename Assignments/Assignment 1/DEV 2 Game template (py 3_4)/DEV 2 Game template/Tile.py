@@ -1,42 +1,41 @@
 ﻿import pygame
 import random
-from Car import *
-from Node import *
+import os
 
+class Cons:
+  def __init__(self, value, tail):
+    self.Tail = tail
+    self.Value = value
+    self.IsEmpty = False
+
+class Empty: 
+  def __init__(self):
+    self.IsEmpty = True
+
+Empty = Empty()
 NotTraverseable = 0
-Park = 1
 
-class Point:
-  def __init__(self, x, y):
-    self.X = x
-    self.Y = y
-
-class Tile:
+class Node:
   def __init__(self, position, texture, offset, properties):    
     self.Properties = properties
     self.Up = None
     self.Down = None
     self.Left = None
     self.Right = None
+    self.Value = Empty
+    self.Properties = Empty
     self.Position = position
-
     self.DefaultTexture = pygame.image.load(texture).convert()
     self.Visited = False
     self.Offset = offset
-
-
-    self.Traverseable = True
-    self.Park = False
-
     props = properties
+
+    traversable = True
     while(props.IsEmpty != True):
-      if props.Value == NotTraverseable: self.Traverseable = False
-      if props.Value == Park: self.Park = True
+      if props.Value == NotTraverseable: traversable = False
       props = props.Tail
-
-
-
-
+    
+    self.Traverseable = traversable
   def Reset(self):
     if self.Visited == True:
       self.Visited = False
@@ -49,54 +48,38 @@ class Tile:
       if self.Right != None:
         self.Right.Reset()
         
-  def Update(self, dt):
-    
-      if self.Visited == False:
-        self.Visited = True
-        tmp = self.Value
-        while(tmp.IsEmpty != True):
-          tmp.Value.Update(dt)
-          tmp = tmp.Tail
-
-        if self.Up != None:
-          self.Up.Update(dt)
-        if self.Down != None:
-          self.Down.Update(dt)
-        if self.Left != None:
-          self.Left.Update(dt)
-        if self.Right != None:
-          self.Right.Update(dt)
-      
+  def Update(self):
+    Exception("Not implemented yet")
 
   def Draw(self, screen):            
     if self.Visited == False:
       self.Visited = True
-      if self.Traverseable and not self.Park:       
-
+      if self.Traverseable:
         _width = int(self.Offset / 3)
         dim = 2
         screen.blit(pygame.transform.scale(self.DefaultTexture, (_width + dim, _width + dim)), 
-                    (_width + self.Position.X * self.Offset, 
-                      _width + self.Position.Y * self.Offset))
+                    (_width + self.Position[0] * self.Offset, 
+                      _width + self.Position[1] * self.Offset))
         
         if self.Up != None and self.Up.Traverseable:
           screen.blit(pygame.transform.scale(self.DefaultTexture, (_width + dim, _width  + dim)), 
-                      (_width + self.Position.X * self.Offset, 
-                       self.Position.Y * self.Offset))
+                      (_width + self.Position[0] * self.Offset, 
+                       self.Position[1] * self.Offset))
         if self.Down != None and self.Down.Traverseable:
           screen.blit(pygame.transform.scale(self.DefaultTexture, (_width + dim, _width  + dim)), 
-                      (_width + self.Position.X * self.Offset, 
-                       _width * 2 + self.Position.Y * self.Offset))
+                      (_width + self.Position[0] * self.Offset, 
+                       _width * 2 + self.Position[1] * self.Offset))
         if self.Left != None and self.Left.Traverseable:
           screen.blit(pygame.transform.scale(self.DefaultTexture, (_width + dim, _width  + dim)), 
-                      (self.Position.X * self.Offset, 
-                       _width + self.Position.Y * self.Offset))
+                      (self.Position[0] * self.Offset, 
+                       _width + self.Position[1] * self.Offset))
         if self.Right!= None and self.Right.Traverseable:
           screen.blit(pygame.transform.scale(self.DefaultTexture, (_width + dim, _width  + dim)), 
-                      (_width * 2 + self.Position.X * self.Offset, 
-                        _width + self.Position.Y * self.Offset))                
+                      (_width * 2 + self.Position[0] * self.Offset, 
+                        _width + self.Position[1] * self.Offset))        
+        
       else:
-        screen.blit(pygame.transform.scale(self.DefaultTexture, (self.Offset - 1, self.Offset - 1)), (self.Position.X * self.Offset, self.Position.Y * self.Offset))
+        screen.blit(pygame.transform.scale(self.DefaultTexture, (self.Offset - 1, self.Offset - 1)), (self.Position[0] * self.Offset, self.Position[1] * self.Offset))
 
       if self.Up != None:
         self.Up.Draw(screen)
@@ -115,15 +98,11 @@ def build_square_matrix (dimension, offset):
   prev_node = None
   for row in range(dimension):    
     for column in range(dimension):
-      if (random.uniform(0, 1) > 0.75) and row > 0 and column > 0:
-        if (random.uniform(0, 1) > 0.75):
-          properties = Node(Park, Empty)
-          node = Tile(Point(column, row), "Content\park.png", offset, properties)
-        else:
-          properties = Node(NotTraverseable, Empty)
-          node = Tile(Point(column, row), "Content\house.png", offset, properties)
+      if (random.uniform(0, 1) > 0.8):
+        properties = Cons(NotTraverseable, Empty)
+        node = Node((column, row), os.path.join("Content","house.png"), offset, properties)
       else:
-        node = Tile(Point(column, row), "Content\white_pixel.png", offset, Empty)
+        node = Node((column, row), os.path.join("Content","white_pixel.png"), offset, Empty)
       
       if row == 0 and column == 0:
         entry_point = node
