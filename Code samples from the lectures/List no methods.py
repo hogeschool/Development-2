@@ -1,4 +1,4 @@
-class Empty:
+﻿class Empty:
   def __init__(self):
     self.IsEmpty = True
 Empty = Empty()
@@ -9,11 +9,74 @@ class Node:
     self.Value = x
     self.Tail = xs
 
-
 cnt = int(input("How many elements?"))
 l = Empty
 for i in range(0, cnt):
   l = Node(i, l)
+
+def printList(l):
+  if l.IsEmpty:
+    return
+  else:
+    print(l.Value)
+    printList(l.Tail)
+
+def removeOdd(l):
+  if l.IsEmpty:
+    return Empty
+  else:
+    if l.Value % 2 == 0:
+      return Node(l.Value, removeOdd(l.Tail))
+    else:
+      return removeOdd(l.Tail)
+
+printList(l)
+
+def addList(l):
+  if l.IsEmpty:
+    return 0
+  else:
+    return l.Value + addList(l.Tail)
+
+def mulList(l):
+  if l.IsEmpty:
+    return 1
+  else:
+    return l.Value * mulList(l.Tail)
+
+quit()
+
+
+
+
+
+def fold(l, f, z):
+  if l.IsEmpty:
+    return z
+  else:
+    return f(l.Value, fold(l.Tail, f, z))
+
+def map(l, f):
+  return fold(l, lambda x, t_l: Node(f(x), t_l), Empty)
+
+def addAll(l):
+  if l.IsEmpty:
+    return 0
+  else:
+    return l.Value + addAll(l.Tail)
+
+def mulAll(l):
+  if l.IsEmpty:
+    return 1
+  else:
+    return l.Value * mulAll(l.Tail)
+
+# NOT VALID CODE!!!!!!!
+def doSomethingOnAll(base_case, combination_op, l):
+  if l.IsEmpty:
+    return base_case
+  else:
+    return combination_op(l.Value, doSomethingOnAll(base_case, combination_op, l.Tail))
 
 x = l
 while not(x.IsEmpty):
