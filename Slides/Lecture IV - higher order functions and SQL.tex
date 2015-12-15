@@ -139,7 +139,7 @@ or
 \begin{slide}{
 \item Python (version at least 3) offers facilities for the inline definition of short functions
 \item The syntax fits one line and requires no newlines
-\item \texttt{lambda <<paramters>>: <<result>>}
+\item \texttt{lambda <<parameters>>: <<result>>}
 \begin{itemize}
 \item \texttt{<<parameters>>} is a list of comma-separated parameters
 \item \texttt{<<result>>} is the expression that is returned
@@ -291,8 +291,9 @@ def map(l, f):
     return Empty
   else:
     return Node(f(l.Head), map(l.Tail, f))
-
-printList(map(Node(1, Node(2, Node(3, Node(4, Empty)))), lambda x: x + 1))
+    
+l = Node(1, Node(2, Node(3, Node(4, Empty))))
+printList(map(l, lambda x: x + 1))
 \end{codewithblock}
 \end{frame}
 
@@ -304,7 +305,8 @@ def map(l, f):
   else:
     return Node(f(l.Head), map(l.Tail, f))
 
-printList(map(Node(1, Node(2, Node(3, Node(4, Empty)))), lambda x: x * 2))
+l = Node(1, Node(2, Node(3, Node(4, Empty))))
+printList(map(l, lambda x: x * 2))
 \end{codewithblock}
 \end{frame}
 
