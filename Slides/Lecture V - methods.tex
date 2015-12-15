@@ -55,7 +55,7 @@ Rotterdam, Netherlands}
 \item What are the fundamental attributes?
 \item What properties do the attributes have (relationships, etc.)?
 \item What are the fundamental methods of the class?
-\item What properties do the attributes have (relationships, returned values, etc.)?
+\item What properties do the methods have (relationships, returned values, etc.)?
 }\end{slide}
 
 \begin{frame}[fragile]{The blueprint of the list class (\textbf{THIS IS NOT CODE!})}
@@ -198,7 +198,7 @@ print(l.Length())
 }\end{slide}
 
 \begin{slide}{
-\item Whenever Python encounters a call such as \texttt{x.M(p1, ..., p2} then it \textit{transforms} it into a similar call \texttt{C.M(x, p1, ..., pn)} where \texttt{C} is the type of \texttt{x} in memory
+\item Whenever Python encounters a call such as \texttt{x.M(p1, ..., pn)} then it \textit{transforms} it into a similar call \texttt{C.M(x, p1, ..., pn)} where \texttt{C} is the type of \texttt{x} in memory
 \item This way \texttt{x} automatically becomes \texttt{self} inside \texttt{M}
 
 $$\langle x.M(p_1,\dots,p_n), S, H \rangle \rightarrow \langle H[S[x]][C].M(x,p_1,\dots,p_n) \rangle$$
@@ -320,8 +320,8 @@ Empty = Empty()
 \begin{lstlisting}
 class Node:
   def IsEmpty(self): return False
-  def Head(self): return self.Head
-  def Tail(self): return self.Tail
+  def Head(self): return self.head
+  def Tail(self): return self.tail
   def __init__(self, x, xs):
     self.head = x
     self.tail = xs
@@ -363,13 +363,8 @@ class Node:
 
 \SlideSubSection{What does this program print?}
 \begin{frame}[fragile]{Using lists}
-\begin{codewithblock}{\pause \item \texttt{'4', '2<<3<<4<<5', '2<<4', '10', '24']}}
-l = 1 << (2 << (3 << (4 << Empty)))
-print("length(" + str(l) + ") = " + str(l.Length()))
-print("incr(" + str(l) + ") = " + str(l.Map(lambda x: x + 1)))
-print("even(" + str(l) + ") = " + str(l.Filter(lambda x: x % 2 == 0)))
-print("sum(" + str(l) + ") = " + str(l.Sum()))
-print("mul(" + str(l) + ") = " + str(l.Fold(lambda x,y: x * y, 1)))
+\begin{codewithblock}{\pause \item \texttt{'length(1<<2<<3<<4<<[]) = 4'} \item \texttt{'incr(1<<2<<3<<4<<[]) = 2<<3<<4<<5<<[]'} \item \texttt{'even(<1<<2<<3<<4<<[]) = 2<<4<<[]'} \item \texttt{'sum(1<<2<<3<<4<<[]) = 10'} \item \texttt{'mul(1<<2<<3<<4<<[]) = 24'}}
+
 \end{codewithblock}
 \end{frame}
 
@@ -415,9 +410,9 @@ class Vector2:
 
 \SlideSubSection{What does this program print?}
 \begin{frame}[fragile]{Let's build a 2D vector}
-\begin{codewithblock}{\pause \item \texttt{(10.0, -2.0)]}}
+\begin{codewithblock}{\pause \item \texttt{(10.0, -2.0)}}
 v = Vector2.UnitX() * 10.0 - Vector2.UnitY() * 2.0
-print(str(v))
+print(v)
 \end{codewithblock}
 \end{frame}
 
