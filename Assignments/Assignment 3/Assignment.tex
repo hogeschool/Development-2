@@ -1,0 +1,82 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{wasysym}
+\usepackage{graphicx}
+\begin{document}
+\title{Assignment 3\\DEV 2 - Year 2015-2016\\\textit{HOF's}}
+\author{The Dev TEAM}
+\maketitle
+
+
+\section{Goal and description}
+The goal is to improve your design and implementation skills on high order functions. For this assignment you have to reuse your code form the Assignment 2.
+\begin{itemize}
+\item design and implement the boat data structure  
+\item move through the scene both cars and boats
+\end{itemize}
+	
+	
+\section{Software requirements}
+To work with the simulation you need \texttt{PyGame 3.4} and \texttt{Python 3.4}. You can download the \texttt{PyGame 3.4 x86} \href{https://bitbucket.org/pygame/pygame/downloads/pygame-1.9.2a0-hg_ea3b3bb8714a.win32-py3.4.msi}{\textcolor{red}{click me}}. PyGame is a set of Python modules designed for writing games.	The simulation comes with a \textit{template project}. The template is available on N@school and GitHub under the voice \texttt{Assignment 1}.
+reuse the car data structure 
+extend the car with can remove and texture
+\section{Details}
+
+\paragraph{HOF's - revision}
+In the following we show the high order functions needed to solve this assignment: \texttt{map} and \texttt{filter}. 
+
+\paragraph{map} is a high order function that takes as parameters a list \texttt{l} and a transformation function \texttt{f} and returns a \textit{new} list made of all elements of \texttt{l} transformed by \texttt{f}. In order to use the \texttt{map} function the transformation function \texttt{f} \textbf{must} always the transformed value. In the following example elements of a list of numbers are all increased by one.
+\begin{lstlisting}[frame=single]
+numbers = Node(1, Node(2, Node(3, Empty)))
+new_numbers = map(numbers, lambda n: n + 1)
+\end{lstlisting}
+
+\paragraph{filter} is a high order function that takes as parameters a list \texttt{l} and a predicate function \texttt{p} and returns a new list made of only the elements of \texttt{l} that satisfy the predicate \texttt{p}. In order to use the \texttt{filter} function the predicate \texttt{p} must always return a boolean value. In the following example from a list of number we select the even numbers.
+\begin{lstlisting}[frame=single]
+numbers = Node(1, Node(2, Node(3, Empty)))
+new_numbers = map(numbers, lambda n: n % 2 == 0)
+\end{lstlisting}
+
+\noindent
+\textbf{N.B.,} You need to study the high order functions and methods for this assignment.
+	
+\section{Tasks}	
+
+\paragraph{Task 1} \textbf{[HOF} adapt the assignment 2 code so to include HOF's in your code. Precisely, your HOF's should replace your previous \textit{draw all cars/draw all boats} and \textit{update all boats/update all cars}. Design and implement such code.
+
+
+\noindent
+\textbf{Hint} For drawing your boats and cars you might need an other HOF called \texttt{iterate}. The \texttt{iterate} function iterates the elements of a list and applies a generic function \texttt{f} to all elements of the list. 
+
+
+\noindent
+\textbf{N.B.,} The function \texttt{iterate} should not change the list dimension or the state of its values. Design such \texttt{iterate} function and use it accordingly.
+
+\section{Submission and deadline}
+
+\noindent
+Contribution: \textit{Groups of 2 students is allowed with individual responsibility}
+
+\noindent
+What: \textit{One PDF per student for all code + comments (comments: explain your code)}
+
+\noindent
+When: \textit{The Friday of week 7}
+
+\noindent
+Where: \textit{On N@school}
+
+
+\huge
+\centering
+GOOD LUCK!!! The Dev TEAM \smiley
+
+	
+\end{document}
