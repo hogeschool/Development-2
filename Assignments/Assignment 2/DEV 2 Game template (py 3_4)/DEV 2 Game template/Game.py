@@ -27,7 +27,7 @@ car_texture = pygame.image.load("Content/car.png").convert_alpha()
 def Main():
   start = time.time()
   while True:    
-    pygame.event.wait()
+    pygame.event.pump()
     screen.fill(green)
 
     #here we draw the board, do not move
