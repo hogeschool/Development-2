@@ -41,7 +41,7 @@ def Main():
   start = time.time()
   cars = Empty
   while True:
-    pygame.event.wait()    
+    pygame.event.pump()    
     screen.fill(green)  
     entry_tile.Reset()
     entry_tile.Draw(screen)
