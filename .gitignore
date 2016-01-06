@@ -322,3 +322,8 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+# python related files
+__pycache__/
+*.py[cod]
+*$py.class
