@@ -1,0 +1,91 @@
+\documentclass[12pt,a4paper,draft]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{The DEV team}
+\title{Homework DEV2}
+
+
+\begin{document}
+	\maketitle
+	
+	\section{Homework 1 - make a car move}
+		\paragraph*{Console version}
+			\begin{itemize}
+				\item Build a \texttt{Car} class;
+				\item Add the attribute \texttt{Position}, which will be a simple integer;
+				\item Add the \texttt{Move} method that increments the position by one;
+				\item Make a test program that initialises the car and moves it ten times; print the position of the car on the console at every step.
+			\end{itemize}
+		
+		\paragraph*{Pygame version}
+			\begin{itemize}
+				\item Use the \texttt{Car} class to draw a pygame screen where the car moves from the left to the right of the screen.
+			\end{itemize}
+	
+	\section{Homework 2 - make a list of cars move}
+		\paragraph*{Console version}
+			\begin{itemize}
+				\item Build the \texttt{Node} and \texttt{Empty} classes;
+				\item Add the usual attributes \texttt{IsEmpty}, \texttt{Head}, and \texttt{Tail} to the classes;
+				\item Make a test program that initialises a list of cars, and moves each of them ten times; print the position of each car on the console at every step.
+			\end{itemize}
+			
+		\paragraph*{Pygame version}
+			\begin{itemize}
+				\item Add a \texttt{VerticalPosition} attribute to the car, so that each car has a different vertical position to distinguish it on the screen;
+				\item Use the list you just implemented to draw a pygame screen where various cars move from the left to the right of the screen.
+			\end{itemize}
+
+	\section{Homework 3 - moving along checkpoints}
+		\paragraph*{Console version}
+			\begin{itemize}
+				\item Make a \texttt{Checkpoint} class, which contains only a \texttt{Position} attribute;
+				\item Make a list of checkpoints;
+				\item In the \texttt{Car}, the \texttt{Position} will now be a reference to a node in the list of checkpoints;
+				\item In the \texttt{Car}, the \texttt{Move} method changes position to the \texttt{Tail}, which is the next checkpoint;
+				\item Make a test program that initialises a list of cars, and moves them until they all reach the final checkpoint; print the position of each car (which is now a checkpoint) on the console at every step.
+			\end{itemize}
+		
+		\paragraph*{Pygame version}
+			\begin{itemize}
+				\item Draw a pygame screen with the checkpoints and the cars;
+				\item The various cars move from one checkpoint to the other (like the metro along the various stations).
+			\end{itemize}
+
+	\section{Homework 4 - crossings}
+		\paragraph*{Console version}
+			\begin{itemize}
+				\item Make a \texttt{Node2D} class, which contains attributes \texttt{TailLeft}, \texttt{TailRight}, \texttt{TailUp}, \texttt{TailDown}, and \texttt{Final}; this is effectively the same as a list but with four possible choices for the \texttt{Tail} (we call this a \textbf{matrix});
+				\item Make a series of checkpoints and put them into \texttt{Node2D}'s;
+				\item In the \texttt{Car}, the \texttt{Position} will now be a reference to a \texttt{Node2D} in the matrix of checkpoints;
+				\item In the \texttt{Car}, the \texttt{Move} method changes position to one of the \texttt{Tail}s, which is the next chosen checkpoint; the choice can be random;
+				\item Make a test program that initialises a list of cars, and moves them until they all reach a specific checkpoint with \texttt{Final == True}; print the position of each car (which is now a checkpoint) on the console at every step.
+			\end{itemize}
+			
+		\paragraph*{Pygame version}
+			\begin{itemize}
+				\item Draw a pygame screen with the checkpoints and the cars;
+				\item The various cars move from one checkpoint to the other (like the cars in the city assignment).
+			\end{itemize}
+
+	\section{Homework 5 - bikes}
+		\paragraph*{Console version}
+		\begin{itemize}
+			\item Make a \texttt{Bike} class that has the \texttt{Move} method just like the car;
+			\item \texttt{Bike}'s are fast, so the bike moves by two tiles at a time;
+			\item Add a \texttt{PrintPosition} method to the \texttt{Car} and the \texttt{Bike}, which prints where the vehicle is;
+			\item Make a test program that initialises a list contains a mixture of cars and bikes, and moves them until they all reach a specific checkpoint with \texttt{Final == True}; print the position of each car or bike (which is now a checkpoint) on the console at every step.
+		\end{itemize}
+		
+		\paragraph*{Pygame version}
+		\begin{itemize}
+			\item Add a \texttt{Draw} method to the \texttt{Car} and the \texttt{Bike}, which draws where the vehicle is with the proper texture; the texture is also added as an attribute of both \texttt{Car} and \texttt{Bike};
+			\item Draw a pygame screen with the checkpoints, the bikes and the cars;
+			\item The various cars and bikes move from one checkpoint to the other (like the cars and boats in the city assignment).
+		\end{itemize}
+	
+
+\end{document}
