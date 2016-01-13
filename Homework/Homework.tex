@@ -125,10 +125,17 @@
 			\end{itemize}
 
 	\section{Exercise 4 - crossings}
+	    Let's continue our voyager by car again. This gives more freedom to travel around the city.
 		\paragraph*{Console version}
 			\begin{itemize}
-				\item Make a \texttt{Node2D} class, which contains attributes \texttt{TailLeft}, \texttt{TailRight}, \texttt{TailUp}, \texttt{TailDown}, and \texttt{Final}; this is effectively the same as a list but with four possible choices for the \texttt{Tail} (we call this a \textbf{matrix});
-				\item Make a series of checkpoints and put them into \texttt{Node2D}'s;
+				\item Make a \texttt{Node2D} class,
+				        which contains attributes
+				            \texttt{TailLeft}, \texttt{TailRight}, \texttt{TailUp}, \texttt{TailDown}, and \texttt{Final};
+				        this is effectively the same as a list,
+				        but with four possible choices for the \texttt{Tail} (we call this a \textbf{matrix});
+				\item Make a class Crossing, with attributes: Position and Name.
+				\item Make a series of crossings and put them into \texttt{Node2D}'s; For example: Rotterdam CS, Hofplein, Eendrachtsplein, Beurs and Blaak.
+				\item You have to define which two crossings are connected using the tails. For example: Rotterdam CS's tailRight would be Hofplein.
 				\item In the \texttt{Car}, the \texttt{Position} will now be a reference to a \texttt{Node2D} in the matrix of checkpoints;
 				\item In the \texttt{Car}, the \texttt{Move} method changes position to one of the \texttt{Tail}s, which is the next chosen checkpoint; the choice can be random;
 				\item Make a test program that initialises a list of cars, and moves them until they all reach a specific checkpoint with \texttt{Final == True}; print the position of each car (which is now a checkpoint) on the console at every step.
