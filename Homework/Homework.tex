@@ -95,23 +95,28 @@
 	    In the assignments the cars will not move along positions based on coordinates, but positions based on \textit{tiles} are used.
 	    In this exercise we will focus on that concept, however we will use a slightly different example: metro's and metro stations.
 	    Our metro is always at a metro station. It can travel between 2 neighbouring stations, but we will not store any positions in between 2 stations.
+        With this exercise you will gain a deeper understanding of Classes, Attributes and Lists.
+        The theory and slides from the previous 2 exercises are applied here.
 
 		\paragraph*{Console version}
 			\begin{itemize}
 				\item Make a \texttt{Station} class,
-                        which contains a \texttt{Position} attribute and a \textt{Name};
+                        which contains a \texttt{Position} attribute and a \texttt{Name};
                         for example: Station(Position(10,40), "Kralinse zoom")
 				\item Make a list of stations;
-				\item Make a \textt{Metro} class,
-                        which has an attribute \texttt{CurrentStation} and a method \textt{Move}.
-				\item The \texttt{CurrentStation} will store a reference to a node in the list of checkpoints;
+				\item Make a \texttt{Metro} class,
+                        which has an attribute \texttt{CurrentStation} and a method \texttt{Move}.
+				\item The \texttt{CurrentStation} will store a reference to a node in the list of stations;
 				\item In the \texttt{Metro} class, the \texttt{Move} method changes position to the \texttt{Tail}, which is the next checkpoint;
 				\item Make a test program that initialises a list of metro's, and moves them until they all reach the final checkpoint; print the position of each metro (which is now a checkpoint) on the console at every step.
 			\end{itemize}
 
-		    Let's reflect on what you did in the part of the exercise. The metro (or car) still stores its position, however that position is now abstracted away into a station object. Which has the advantage that you can reason about station "kralinse zoom" for example, instead of (10, 40).
-		    Station still stores its position in terms of coordinates (10,40), because that is important information.
-		    Stations are connected to each other by the linked list. a Node's head (containing station "kralingse zoom") is connected to the tail (containing it's neighbour "Capelse brug")
+		    Let's reflect on what you did in the part of this exercise.
+		    The metro (or car) still stores its position, however that position is now abstracted away into a station object.
+		    This has the advantage that you can reason about station "kralinse zoom" for example, instead of (10, 40).
+		    Station still stores its position in terms of coordinates (10,40), because we will need that to draw the stations in pygame.
+		    Stations are connected to each other by the linked list. a Node's head (containing station "kralingse zoom") is connected to the tail (containing it's neighbour "Capelse brug").
+
 
 		\paragraph*{Pygame version}
 			\begin{itemize}
