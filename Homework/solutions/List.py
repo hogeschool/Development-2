@@ -22,6 +22,9 @@ class Empty:
     def Fold(self, f, z):
         return z
 
+    def Get(self, i, c=0):
+        return None
+
 
 Empty = Empty()
 
@@ -65,4 +68,10 @@ class Node:
     def Fold(self, f, z):
         return f(self.head, self.tail.Fold(f, z))
 
+    def Get(self, i, c=0):
+        """Return the i'th element of the list"""
+        if i == c:
+            return self.head
+        else:
+            return self.tail.Get(i, c+1)
 
