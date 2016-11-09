@@ -138,13 +138,13 @@ class Counter:
 
 \ \\
 
-\paragraph{Question IV: standard libraries} \ \\
+\paragraph{Question IV: Recursive Data Structure} \ \\
 
-\textbf{General shape of the question:} \textit{Define a loop that performs some simple operation on a standard data structure.}
+\textbf{General shape of the question:} \textit{Define a loop that performs some simple operation on a Node list.}
 
 \ \\ 
 
-\textbf{Concrete example of question:} \textit{Define a loop that sums all positive elements of a Python list \texttt{l} which contains only integers. Finally, print the sum.}
+\textbf{Concrete example of question:} \textit{Define a loop that sums all positive elements of a Node list \texttt{l} which contains only integers. Finally, print the sum.}
 
 \ \\ 
 
@@ -152,9 +152,10 @@ class Counter:
 
 \begin{lstlisting}
 sum = 0
-for x in l:
-  if x > 0:
-    sum = sum + x
+while not l.isEmpty:
+  if l.Value > 0:
+    sum = sum + l.Value
+  l = l.Next
 print(sum)
 \end{lstlisting}
 
@@ -168,6 +169,6 @@ print(sum)
 
 \ \\ 
 
-\textbf{Associated learning goals:} \texttt{ARR}.
+\textbf{Associated learning goals:} \texttt{RECDATA}.
 
 \ \\
